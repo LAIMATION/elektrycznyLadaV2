@@ -1,10 +1,11 @@
 'use client'
 
+import { type ReactNode } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 
 interface AnimateInProps {
-  children: React.ReactNode
+  children: ReactNode
   className?: string
   delay?: number
   direction?: 'up' | 'left' | 'none'
@@ -46,7 +47,7 @@ export function AnimateIn({ children, className, delay = 0, direction = 'up' }: 
 }
 
 interface StaggerContainerProps {
-  children: React.ReactNode
+  children: ReactNode
   className?: string
   staggerDelay?: number
 }
@@ -71,7 +72,7 @@ export function StaggerContainer({ children, className, staggerDelay = 0.1 }: St
   )
 }
 
-export function StaggerItem({ children, className }: { children: React.ReactNode; className?: string }) {
+export function StaggerItem({ children, className }: { children: ReactNode; className?: string }) {
   return (
     <motion.div
       className={className}
