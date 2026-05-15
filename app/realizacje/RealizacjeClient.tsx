@@ -156,7 +156,7 @@ export function RealizacjeClient() {
       <section className="pb-16 px-6 md:px-12 max-w-7xl mx-auto">
         <AnimateIn>
           <Link href="#" className="group block">
-            <div className="relative h-[420px] md:h-[520px] overflow-hidden bg-surface-container">
+            <div className="relative h-[420px] md:h-[520px] overflow-hidden bg-surface-container rounded-2xl">
               <Image
                 src={PROJECTS[0].img}
                 alt={PROJECTS[0].title}

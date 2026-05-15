@@ -82,11 +82,20 @@ body {
 .card-industrial {
   background-color: var(--surface);
   border: 1px solid var(--outline-variant);
-  transition: transform 0.3s cubic-bezier(0.4,0,0,1), border-color 0.3s ease;
+  border-radius: 1rem;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.07);
+  transition: transform 0.3s cubic-bezier(0.4,0,0,1), border-color 0.3s ease, box-shadow 0.3s ease 0s;
 }
 .card-industrial:hover {
   border-color: #F5C842;
   transform: translateY(-4px);
+  box-shadow: 0px 16px 36px rgba(0, 0, 0, 0.13), 0px 4px 10px rgba(245, 200, 66, 0.1);
+}
+.dark .card-industrial {
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+}
+.dark .card-industrial:hover {
+  box-shadow: 0px 16px 36px rgba(0, 0, 0, 0.45), 0px 4px 10px rgba(245, 200, 66, 0.08);
 }
 
 /* ─── Filter chip ────────────────────────────────────── */
@@ -296,10 +305,33 @@ body {
   animation: ping_ring 1.8s cubic-bezier(0,0,0.2,1) infinite;
 }
 
+/* ─── Hover lift (interactive containers) ───────────── */
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0, 1), box-shadow 0.3s ease 0s;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.07);
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0px 14px 28px rgba(0, 0, 0, 0.12), 0px 4px 8px rgba(245, 200, 66, 0.08);
+}
+.hover-lift:active {
+  transform: translateY(-1px);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
+}
+.dark .hover-lift {
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3);
+}
+.dark .hover-lift:hover {
+  box-shadow: 0px 14px 28px rgba(0, 0, 0, 0.45), 0px 4px 8px rgba(245, 200, 66, 0.06);
+}
+
 /* ─── Bento grid overflow fix ────────────────────────── */
 .bento-item {
   overflow: hidden;
   position: relative;
+  border-radius: 0.75rem;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.07);
+  transition: box-shadow 0.3s ease 0s;
 }
 .bento-item img {
   width: 100%;
@@ -307,8 +339,17 @@ body {
   object-fit: cover;
   transition: transform 0.7s cubic-bezier(0.4,0,0,1);
 }
+.bento-item:hover {
+  box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.16);
+}
 .bento-item:hover img {
   transform: scale(1.06);
+}
+.dark .bento-item {
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.35);
+}
+.dark .bento-item:hover {
+  box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.5);
 }
 
 /* ─── Nav link underline animation ───────────────────── */

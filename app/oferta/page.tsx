@@ -139,7 +139,7 @@ export default function OfertaPage() {
                   {/* Card header with yellow line */}
                   <div className="signature-line" />
                   <div className="flex items-start gap-4 mb-4">
-                    <div className="w-10 h-10 bg-iskra/10 flex items-center justify-center flex-shrink-0">
+                    <div className="w-10 h-10 bg-iskra/10 flex items-center justify-center flex-shrink-0 rounded-xl">
                       <Icon size={20} className="text-iskra" strokeWidth={1.75} />
                     </div>
                     <div>
@@ -177,7 +177,7 @@ export default function OfertaPage() {
             {process.map(({ step, title, desc }) => (
               <StaggerItem key={step}>
                 <div className="relative">
-                  <div className="w-12 h-12 border-2 border-iskra flex items-center justify-center mb-6">
+                  <div className="w-12 h-12 border-2 border-iskra flex items-center justify-center mb-6 rounded-xl">
                     <span className="mono text-mono-sm text-iskra font-medium">{step}</span>
                   </div>
                   {/* Connecting line */}
@@ -195,7 +195,7 @@ export default function OfertaPage() {
       <section className="section-padding px-6 md:px-12 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <AnimateIn>
-            <div className="relative aspect-square overflow-hidden bg-surface-container">
+            <div className="relative aspect-square overflow-hidden bg-surface-container rounded-2xl">
               <Image
                 src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80"
                 alt="Realizacja Smart Home – willa w Białymstoku"
@@ -230,7 +230,7 @@ export default function OfertaPage() {
                   ['Czas realizacji', '6 tygodni'],
                   ['Standard', 'KNX + DALI'],
                 ].map(([k, v]) => (
-                  <div key={k} className="border border-outline-variant p-4">
+                  <div key={k} className="border border-outline-variant p-4 rounded-xl hover-lift">
                     <dt className="mono text-mono-xs text-on-variant uppercase tracking-widest mb-1">{k}</dt>
                     <dd className="font-inter font-bold text-iskra text-lg">{v}</dd>
                   </div>
@@ -261,7 +261,7 @@ export default function OfertaPage() {
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-6" staggerDelay={0.1}>
             {guarantee.map(({ icon: Icon, title, desc }) => (
               <StaggerItem key={title}>
-                <div className="bg-on-iskra/10 p-8 border border-on-iskra/20">
+                <div className="bg-on-iskra/10 p-8 border border-on-iskra/20 rounded-xl hover-lift">
                   <Icon size={28} className="text-on-iskra mb-5" strokeWidth={1.5} />
                   <h3 className="font-inter font-bold text-on-iskra text-[17px] mb-3">{title}</h3>
                   <p className="text-body-md text-on-iskra/80">{desc}</p>

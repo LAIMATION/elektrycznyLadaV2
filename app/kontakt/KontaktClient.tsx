@@ -109,7 +109,7 @@ export function KontaktClient() {
               </div>
               <address className="not-italic flex flex-col gap-6 mb-10">
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 border border-outline-variant flex items-center justify-center flex-shrink-0">
+                  <div className="w-10 h-10 border border-outline-variant flex items-center justify-center flex-shrink-0 rounded-xl">
                     <MapPin size={16} className="text-iskra" />
                   </div>
                   <div>
@@ -122,7 +122,7 @@ export function KontaktClient() {
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 border border-outline-variant flex items-center justify-center flex-shrink-0">
+                  <div className="w-10 h-10 border border-outline-variant flex items-center justify-center flex-shrink-0 rounded-xl">
                     <Phone size={16} className="text-iskra" />
                   </div>
                   <div>
@@ -138,7 +138,7 @@ export function KontaktClient() {
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 border border-outline-variant flex items-center justify-center flex-shrink-0">
+                  <div className="w-10 h-10 border border-outline-variant flex items-center justify-center flex-shrink-0 rounded-xl">
                     <Mail size={16} className="text-iskra" />
                   </div>
                   <div>
@@ -165,7 +165,7 @@ export function KontaktClient() {
                     href="https://www.instagram.com/elektryczny.lada/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2.5 px-4 py-2.5 border border-outline-variant hover:border-iskra hover:text-iskra transition-all duration-180 text-on-variant"
+                    className="flex items-center gap-2.5 px-4 py-2.5 border border-outline-variant rounded-lg hover-lift hover:border-iskra hover:text-iskra text-on-variant"
                     aria-label="Instagram"
                   >
                     <Instagram size={15} />
@@ -175,7 +175,7 @@ export function KontaktClient() {
                     href="https://www.facebook.com/profile.php?id=61586262846558"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2.5 px-4 py-2.5 border border-outline-variant hover:border-iskra hover:text-iskra transition-all duration-180 text-on-variant"
+                    className="flex items-center gap-2.5 px-4 py-2.5 border border-outline-variant rounded-lg hover-lift hover:border-iskra hover:text-iskra text-on-variant"
                     aria-label="Facebook"
                   >
                     <Facebook size={15} />

@@ -129,7 +129,7 @@ export default function HomePage() {
           {/* Hero image */}
           <div className="md:col-span-5 hidden md:block">
             <AnimateIn delay={0.2} direction="left">
-              <div className="relative aspect-[4/5] overflow-hidden bg-surface-container">
+              <div className="relative aspect-[4/5] overflow-hidden bg-surface-container rounded-2xl">
                 <Image
                   src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80"
                   alt="Precyzyjnie okablowana rozdzielnia elektryczna – elektrycznyŁada Białystok"
@@ -138,7 +138,7 @@ export default function HomePage() {
                   unoptimized
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-bg/60 to-transparent" />
-                <div className="absolute top-4 right-4 bg-iskra px-3 py-1">
+                <div className="absolute top-4 right-4 bg-iskra px-3 py-1 rounded">
                   <span className="mono text-mono-xs text-on-iskra">REF_NO: 001-ALPHA</span>
                 </div>
               </div>
@@ -186,7 +186,7 @@ export default function HomePage() {
                 <StaggerItem key={ref}>
                   <div className="card-industrial p-8 group">
                     <div className="flex items-start gap-6">
-                      <div className="flex-shrink-0 w-12 h-12 bg-iskra/10 flex items-center justify-center group-hover:bg-iskra/20 transition-colors duration-300">
+                      <div className="flex-shrink-0 w-12 h-12 bg-iskra/10 flex items-center justify-center rounded-xl group-hover:bg-iskra/20 transition-colors duration-300">
                         <Icon size={22} className="text-iskra" strokeWidth={1.75} />
                       </div>
                       <div className="flex-1">
@@ -211,8 +211,8 @@ export default function HomePage() {
           <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-4" staggerDelay={0.08}>
             {services.map(({ icon: Icon, title, desc }) => (
               <StaggerItem key={title}>
-                <div className="bg-surface p-6 border border-outline-variant hover:border-iskra transition-colors duration-200 group cursor-default">
-                  <div className="w-10 h-10 bg-iskra/10 flex items-center justify-center mb-4 group-hover:bg-iskra/20 transition-colors duration-200">
+                <div className="bg-surface p-6 border border-outline-variant rounded-xl hover-lift hover:border-iskra group cursor-default">
+                  <div className="w-10 h-10 bg-iskra/10 flex items-center justify-center mb-4 rounded-lg group-hover:bg-iskra/20 transition-colors duration-200">
                     <Icon size={18} className="text-iskra" strokeWidth={1.75} />
                   </div>
                   <h3 className="font-inter font-bold text-on-bg mb-2 text-[15px]">{title}</h3>
