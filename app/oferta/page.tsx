@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { SectionHeader } from '@/components/ui/SectionHeader'
 import { AnimateIn, StaggerContainer, StaggerItem } from '@/components/ui/AnimateIn'
+import { GSAPChars, GSAPTypewriter } from '@/components/ui/GSAPText'
 import {
   Zap, Cpu, Home, CheckCircle2, ArrowRight, ShieldCheck,
   Clock, Award, Wrench
@@ -97,15 +98,18 @@ export default function OfertaPage() {
       <section className="pt-32 pb-20 px-6 md:px-12 max-w-7xl mx-auto">
         <AnimateIn>
           <div className="signature-line w-24" />
-          <p className="mono text-mono-xs uppercase tracking-widest text-primary mt-4 mb-4">
-            SERVICES_CATALOG // SECTION_INDEX
-          </p>
+          <GSAPTypewriter
+            text="SERVICES_CATALOG // SECTION_INDEX"
+            className="mono text-mono-xs uppercase tracking-widest text-primary mt-4 mb-4 block"
+          />
         </AnimateIn>
-        <AnimateIn delay={0.08}>
-          <h1 className="font-inter font-extrabold text-display-lg text-on-bg leading-none tracking-tight mb-6 max-w-3xl">
-            Systemy oparte na logice i absolutnej precyzji.
-          </h1>
-        </AnimateIn>
+        <GSAPChars
+          as="h1"
+          className="font-inter font-extrabold text-display-lg text-on-bg leading-none tracking-tight mb-6 max-w-3xl"
+          delay={0.08}
+        >
+          Systemy oparte na logice i absolutnej precyzji.
+        </GSAPChars>
         <AnimateIn delay={0.15}>
           <p className="text-body-lg text-on-variant max-w-2xl">
             Nie ma tu miejsca na przypadek. To, co inwestujesz w elektrykę, zwraca się bezpieczeństwem,

@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { AnimateIn, StaggerContainer, StaggerItem } from '@/components/ui/AnimateIn'
+import { GSAPChars, GSAPTypewriter } from '@/components/ui/GSAPText'
 import { FilterBar } from '@/components/ui/FilterBar'
 import { SectionHeader } from '@/components/ui/SectionHeader'
 import { ArrowRight, Clock, Calculator, FileText, CheckSquare } from 'lucide-react'
@@ -132,15 +133,18 @@ export function WiedzaClient() {
       <section className="pt-32 pb-16 px-6 md:px-12 max-w-7xl mx-auto">
         <AnimateIn>
           <div className="signature-line w-24" />
-          <p className="mono text-mono-xs uppercase tracking-widest text-primary mt-4 mb-4">
-            KNOWLEDGE_BASE // TECH_ARTICLES
-          </p>
+          <GSAPTypewriter
+            text="KNOWLEDGE_BASE // TECH_ARTICLES"
+            className="mono text-mono-xs uppercase tracking-widest text-primary mt-4 mb-4 block"
+          />
         </AnimateIn>
-        <AnimateIn delay={0.08}>
-          <h1 className="font-inter font-extrabold text-display-lg text-on-bg leading-none tracking-tight mb-6 max-w-4xl">
-            Ekspercka wiedza<br />o systemach elektrycznych<br />i automatyce.
-          </h1>
-        </AnimateIn>
+        <GSAPChars
+          as="h1"
+          className="font-inter font-extrabold text-display-lg text-on-bg leading-none tracking-tight mb-6 max-w-4xl"
+          delay={0.08}
+        >
+          Ekspercka wiedza<br />o systemach elektrycznych<br />i automatyce.
+        </GSAPChars>
         <AnimateIn delay={0.15}>
           <p className="text-body-lg text-on-variant max-w-2xl">
             Bez marketingowych uproszczeń – tylko rzetelna wiedza techniczna dla instalatorów,

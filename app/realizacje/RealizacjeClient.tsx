@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { AnimateIn } from '@/components/ui/AnimateIn'
+import { GSAPChars, GSAPTypewriter } from '@/components/ui/GSAPText'
 import { FilterBar } from '@/components/ui/FilterBar'
 import { ArrowRight, ExternalLink } from 'lucide-react'
 
@@ -135,15 +136,18 @@ export function RealizacjeClient() {
       <section className="pt-32 pb-16 px-6 md:px-12 max-w-7xl mx-auto">
         <AnimateIn>
           <div className="signature-line w-24" />
-          <p className="mono text-mono-xs uppercase tracking-widest text-primary mt-4 mb-4">
-            TECHNICAL_LOG // PROJECT_ARCHIVE
-          </p>
+          <GSAPTypewriter
+            text="TECHNICAL_LOG // PROJECT_ARCHIVE"
+            className="mono text-mono-xs uppercase tracking-widest text-primary mt-4 mb-4 block"
+          />
         </AnimateIn>
-        <AnimateIn delay={0.08}>
-          <h1 className="font-inter font-extrabold text-display-lg text-on-bg leading-none tracking-tight mb-6 max-w-3xl">
-            Dziennik Techniczny:<br />Precyzja w każdym detalu.
-          </h1>
-        </AnimateIn>
+        <GSAPChars
+          as="h1"
+          className="font-inter font-extrabold text-display-lg text-on-bg leading-none tracking-tight mb-6 max-w-3xl"
+          delay={0.08}
+        >
+          Dziennik Techniczny:<br />Precyzja w każdym detalu.
+        </GSAPChars>
         <AnimateIn delay={0.15}>
           <p className="text-body-lg text-on-variant max-w-2xl">
             Dokumentujemy każdy projekt – od schematu ideowego po protokół odbioru. To świadectwo

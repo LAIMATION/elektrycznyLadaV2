@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 import { AnimateIn, StaggerContainer, StaggerItem } from '@/components/ui/AnimateIn'
+import { GSAPChars, GSAPTypewriter } from '@/components/ui/GSAPText'
 import { StatusBadge } from '@/components/ui/StatusIndicator'
 import { MapPin, Phone, Mail, Send, CheckCircle2, Instagram, Facebook } from 'lucide-react'
 
@@ -81,15 +82,18 @@ export function KontaktClient() {
       <section className="pt-32 pb-16 px-6 md:px-12 max-w-7xl mx-auto">
         <AnimateIn>
           <div className="signature-line w-24" />
-          <p className="mono text-mono-xs uppercase tracking-widest text-primary mt-4 mb-4">
-            CONTACT_INIT // SYSTEM_READY
-          </p>
+          <GSAPTypewriter
+            text="CONTACT_INIT // SYSTEM_READY"
+            className="mono text-mono-xs uppercase tracking-widest text-primary mt-4 mb-4 block"
+          />
         </AnimateIn>
-        <AnimateIn delay={0.08}>
-          <h1 className="font-inter font-extrabold text-display-lg text-on-bg leading-none tracking-tight mb-4 max-w-2xl">
-            Zacznijmy od logiki
-          </h1>
-        </AnimateIn>
+        <GSAPChars
+          as="h1"
+          className="font-inter font-extrabold text-display-lg text-on-bg leading-none tracking-tight mb-4 max-w-2xl"
+          delay={0.08}
+        >
+          Zacznijmy od logiki
+        </GSAPChars>
         <AnimateIn delay={0.15}>
           <p className="text-body-lg text-on-variant max-w-2xl">
             Opisz projekt, a wrócę z precyzyjną analizą i bezpłatną wyceną. Bez zbędnych pytań

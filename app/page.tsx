@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { SectionHeader } from '@/components/ui/SectionHeader'
 import { AnimateIn, StaggerContainer, StaggerItem } from '@/components/ui/AnimateIn'
+import { GSAPChars, GSAPTypewriter } from '@/components/ui/GSAPText'
 import { StatusBadge } from '@/components/ui/StatusIndicator'
 import {
   Zap, ShieldCheck, Ruler, ArrowRight, ChevronRight,
@@ -94,17 +95,19 @@ export default function HomePage() {
               <div className="signature-line w-24 mb-0" style={{ marginBottom: 0 }} />
             </AnimateIn>
 
-            <AnimateIn delay={0.1}>
-              <p className="mono text-mono-xs uppercase tracking-widest text-primary mt-4 mb-4">
-                SYSTEMS_ENGINEERING // VER 2.4
-              </p>
-            </AnimateIn>
+            <GSAPTypewriter
+              text="SYSTEMS_ENGINEERING // VER 2.4"
+              className="mono text-mono-xs uppercase tracking-widest text-primary mt-4 mb-4 block"
+              delay={0.3}
+            />
 
-            <AnimateIn delay={0.15}>
-              <h1 className="font-inter font-extrabold text-display-lg text-on-bg leading-none tracking-tight mb-6">
-                Ład<br />w elektryce.
-              </h1>
-            </AnimateIn>
+            <GSAPChars
+              as="h1"
+              className="font-inter font-extrabold text-display-lg text-on-bg leading-none tracking-tight mb-6"
+              delay={0.15}
+            >
+              Ład<br />w elektryce.
+            </GSAPChars>
 
             <AnimateIn delay={0.22}>
               <p className="text-body-lg text-on-variant max-w-lg mb-10">
