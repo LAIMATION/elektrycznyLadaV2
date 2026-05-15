@@ -118,11 +118,11 @@ export default function HomePage() {
             </AnimateIn>
 
             <AnimateIn delay={0.28}>
-              <div className="flex flex-wrap gap-4">
-                <Link href="/realizacje" className="btn-primary">
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link href="/realizacje" className="btn-primary w-full sm:w-auto justify-center">
                   Zobacz projekty <ArrowRight size={15} />
                 </Link>
-                <Link href="/oferta" className="btn-ghost">
+                <Link href="/oferta" className="btn-ghost w-full sm:w-auto justify-center">
                   Nasza oferta
                 </Link>
               </div>
@@ -320,11 +320,11 @@ export default function HomePage() {
               Opisz swój projekt, a przygotuję bezpłatną wycenę w ciągu 24 godzin.
             </p>
           </div>
-          <div className="flex flex-wrap gap-4 flex-shrink-0">
-            <Link href="/kontakt?wycena=1" className="btn-cta">
+          <div className="flex flex-col sm:flex-row gap-4 flex-shrink-0">
+            <Link href="/kontakt?wycena=1" className="btn-cta w-full sm:w-auto justify-center">
               Darmowa wycena <ArrowRight size={15} />
             </Link>
-            <Link href="/realizacje" className="btn-cta-outline">
+            <Link href="/realizacje" className="btn-cta-outline w-full sm:w-auto justify-center">
               Nasze realizacje
             </Link>
           </div>
