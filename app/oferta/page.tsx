@@ -270,10 +270,7 @@ export default function OfertaPage() {
             ))}
           </StaggerContainer>
           <AnimateIn delay={0.3} className="mt-10 text-center">
-            <Link
-              href="/kontakt?wycena=1"
-              className="inline-flex items-center gap-2 bg-on-iskra text-iskra font-mono text-[13px] font-medium uppercase tracking-widest px-8 py-4 rounded-full hover:opacity-90 transition-opacity"
-            >
+            <Link href="/kontakt?wycena=1" className="btn-cta">
               Poproś o bezpłatną wycenę <ArrowRight size={15} />
             </Link>
           </AnimateIn>

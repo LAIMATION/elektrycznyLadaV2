@@ -316,16 +316,10 @@ export default function HomePage() {
             </p>
           </div>
           <div className="flex flex-wrap gap-4 flex-shrink-0">
-            <Link
-              href="/kontakt?wycena=1"
-              className="inline-flex items-center gap-2 bg-on-iskra text-iskra font-mono text-[13px] font-medium uppercase tracking-widest px-8 py-4 rounded-full hover:opacity-90 transition-opacity"
-            >
+            <Link href="/kontakt?wycena=1" className="btn-cta">
               Darmowa wycena <ArrowRight size={15} />
             </Link>
-            <Link
-              href="/realizacje"
-              className="inline-flex items-center gap-2 border-2 border-on-iskra/40 text-on-iskra font-mono text-[13px] font-medium uppercase tracking-widest px-8 py-4 rounded-full hover:border-on-iskra transition-colors"
-            >
+            <Link href="/realizacje" className="btn-cta-outline">
               Nasze realizacje
             </Link>
           </div>
