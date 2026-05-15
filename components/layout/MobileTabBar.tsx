@@ -26,21 +26,24 @@ export function MobileTabBar() {
             <li key={href} className="flex-1">
               <Link
                 href={href}
-                className={`flex flex-col items-center gap-1 py-3 transition-colors duration-180 ${
+                className={`flex flex-col items-center py-2.5 transition-colors duration-250 ${
                   active ? 'text-iskra' : 'text-on-variant'
                 }`}
               >
-                <span className="relative">
-                  <Icon size={20} strokeWidth={active ? 2.5 : 1.75} />
-                  {active && (
-                    <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-iskra rounded-full" />
-                  )}
-                </span>
                 <span
-                  className="mono text-[10px] uppercase tracking-widest leading-none"
-                  style={{ letterSpacing: '0.07em' }}
+                  className={`flex flex-col items-center gap-1 px-3.5 py-1.5 rounded-full border transition-all duration-250 ${
+                    active
+                      ? 'border-iskra shadow-[0px_4px_14px_rgba(245,200,66,0.32)]'
+                      : 'border-transparent'
+                  }`}
                 >
-                  {label}
+                  <Icon size={20} strokeWidth={active ? 2.5 : 1.75} />
+                  <span
+                    className="mono text-[10px] uppercase leading-none"
+                    style={{ letterSpacing: '0.07em' }}
+                  >
+                    {label}
+                  </span>
                 </span>
               </Link>
             </li>

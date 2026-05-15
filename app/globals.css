@@ -109,16 +109,33 @@ body {
   background: transparent;
   color: var(--on-variant);
   cursor: pointer;
-  transition: all 0.18s linear;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.07);
+  transition: color 0.25s cubic-bezier(0.4,0,0,1), border-color 0.25s cubic-bezier(0.4,0,0,1), transform 0.25s cubic-bezier(0.4,0,0,1), box-shadow 0.25s ease 0s;
 }
 .filter-chip:hover {
   border-color: #F5C842;
   color: var(--on-bg);
+  transform: translateY(-2px);
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1), 0px 2px 4px rgba(245, 200, 66, 0.12);
+}
+.filter-chip:active {
+  transform: translateY(0px);
 }
 .filter-chip.active {
   background-color: #F5C842;
   border-color: #F5C842;
   color: #111111;
+  transform: translateY(-2px);
+  box-shadow: 0px 6px 18px rgba(245, 200, 66, 0.5);
+}
+.dark .filter-chip {
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.28);
+}
+.dark .filter-chip:hover {
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.38), 0px 2px 4px rgba(245, 200, 66, 0.1);
+}
+.dark .filter-chip.active {
+  box-shadow: 0px 6px 18px rgba(245, 200, 66, 0.32);
 }
 
 /* ─── Primary button (pill) ──────────────────────────── */
@@ -352,7 +369,7 @@ body {
   box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.5);
 }
 
-/* ─── Nav link underline animation ───────────────────── */
+/* ─── Nav link pill animation ────────────────────────── */
 .nav-link {
   position: relative;
   font-family: 'JetBrains Mono', monospace;
@@ -361,23 +378,23 @@ body {
   text-transform: uppercase;
   color: var(--on-variant);
   text-decoration: none;
-  padding-bottom: 2px;
-  transition: color 0.18s linear;
+  padding: 0.35rem 0.9rem;
+  border-radius: 9999px;
+  border: 1.5px solid transparent;
+  transition: color 0.25s cubic-bezier(0.4,0,0,1), border-color 0.25s cubic-bezier(0.4,0,0,1), box-shadow 0.25s ease 0s;
 }
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: #F5C842;
-  transition: width 0.25s cubic-bezier(0.4,0,0,1);
+.nav-link:hover {
+  color: var(--on-bg);
+  border-color: var(--outline-variant);
 }
-.nav-link:hover { color: var(--on-bg); }
-.nav-link:hover::after,
-.nav-link.active::after { width: 100%; }
-.nav-link.active { color: var(--on-bg); }
+.nav-link.active {
+  color: var(--on-bg);
+  border-color: #F5C842;
+  box-shadow: 0px 4px 14px rgba(245, 200, 66, 0.35);
+}
+.dark .nav-link.active {
+  box-shadow: 0px 4px 14px rgba(245, 200, 66, 0.22);
+}
 
 /* ─── Mobile tab bar safe area ────────────────────────── */
 @supports (padding-bottom: env(safe-area-inset-bottom)) {
