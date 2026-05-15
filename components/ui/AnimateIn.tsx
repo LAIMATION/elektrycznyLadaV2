@@ -1,9 +1,10 @@
 'use client'
 
-import { type ReactNode } from 'react'
+import { type ReactNode, useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
 
+// ── AnimateIn ─────────────────────────────────────────────────────────
+// Fade + slide (+ subtle scale) entrance triggered by scroll viewport.
 interface AnimateInProps {
   children: ReactNode
   className?: string
@@ -18,17 +19,19 @@ export function AnimateIn({ children, className, delay = 0, direction = 'up' }: 
   const variants = {
     hidden: {
       opacity: 0,
-      y: direction === 'up' ? 28 : 0,
-      x: direction === 'left' ? -28 : 0,
+      y: direction === 'up' ? 32 : 0,
+      x: direction === 'left' ? -32 : 0,
+      scale: direction === 'none' ? 1 : 0.98,
     },
     visible: {
       opacity: 1,
       y: 0,
       x: 0,
+      scale: 1,
       transition: {
-        duration: 0.6,
+        duration: 0.7,
         delay,
-        ease: [0.4, 0, 0, 1],
+        ease: [0.16, 1, 0.3, 1],
       },
     },
   }
@@ -46,6 +49,8 @@ export function AnimateIn({ children, className, delay = 0, direction = 'up' }: 
   )
 }
 
+// ── StaggerContainer ──────────────────────────────────────────────────
+// Triggers stagger cascade when container enters viewport.
 interface StaggerContainerProps {
   children: ReactNode
   className?: string
@@ -72,14 +77,49 @@ export function StaggerContainer({ children, className, staggerDelay = 0.1 }: St
   )
 }
 
+// ── StaggerItem ───────────────────────────────────────────────────────
+// Individual card / item inside StaggerContainer — slide up + scale reveal.
 export function StaggerItem({ children, className }: { children: ReactNode; className?: string }) {
   return (
     <motion.div
       className={className}
       variants={{
-        hidden: { opacity: 0, y: 24 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.4, 0, 0, 1] } },
+        hidden: { opacity: 0, y: 36, scale: 0.97 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
+        },
       }}
+    >
+      {children}
+    </motion.div>
+  )
+}
+
+// ── RevealImage ───────────────────────────────────────────────────────
+// Clip-path curtain wipe from bottom — for featured images and hero shots.
+// Pass the image container's className directly so rounded corners are preserved.
+export function RevealImage({
+  children,
+  className,
+  delay = 0,
+}: {
+  children: ReactNode
+  className?: string
+  delay?: number
+}) {
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: '-40px' })
+
+  return (
+    <motion.div
+      ref={ref}
+      className={className}
+      initial={{ clipPath: 'inset(0 0 100% 0)' }}
+      animate={inView ? { clipPath: 'inset(0 0 0% 0)' } : {}}
+      transition={{ duration: 0.9, delay, ease: [0.76, 0, 0.24, 1] }}
     >
       {children}
     </motion.div>

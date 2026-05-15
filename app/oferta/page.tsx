@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { SectionHeader } from '@/components/ui/SectionHeader'
-import { AnimateIn, StaggerContainer, StaggerItem } from '@/components/ui/AnimateIn'
-import { GSAPChars, GSAPTypewriter } from '@/components/ui/GSAPText'
+import { AnimateIn, StaggerContainer, StaggerItem, RevealImage } from '@/components/ui/AnimateIn'
+import { GSAPChars, GSAPTypewriter, GSAPWords } from '@/components/ui/GSAPText'
 import {
   Zap, Cpu, Home, CheckCircle2, ArrowRight, ShieldCheck,
   Clock, Award, Wrench
@@ -198,30 +198,34 @@ export default function OfertaPage() {
       {/* ── Featured project ──────────────────────────────── */}
       <section className="section-padding px-6 md:px-12 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <AnimateIn>
-            <div className="relative aspect-square overflow-hidden bg-surface-container rounded-2xl">
-              <Image
-                src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80"
-                alt="Realizacja Smart Home – willa w Białymstoku"
-                fill
-                className="object-cover"
-                unoptimized
-              />
-              <div className="absolute inset-0 bg-gradient-to-tr from-bg/60 to-transparent" />
-              <div className="absolute bottom-6 left-6 right-6">
-                <span className="mono text-mono-xs text-iskra">REF_NO: BLT-024</span>
-              </div>
+          <RevealImage className="relative aspect-square overflow-hidden bg-surface-container rounded-2xl">
+            <Image
+              src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80"
+              alt="Realizacja Smart Home – willa w Białymstoku"
+              fill
+              className="object-cover"
+              unoptimized
+            />
+            <div className="absolute inset-0 bg-gradient-to-tr from-bg/60 to-transparent" />
+            <div className="absolute bottom-6 left-6 right-6">
+              <span className="mono text-mono-xs text-iskra">REF_NO: BLT-024</span>
             </div>
-          </AnimateIn>
-          <AnimateIn delay={0.1}>
-            <div>
+          </RevealImage>
+          <div>
+            <AnimateIn delay={0.05}>
               <div className="signature-line" />
               <p className="mono text-mono-xs uppercase tracking-widest text-primary mb-4">
                 PROJEKT_REFERENCYJNY // SMART_HOME
               </p>
-              <h2 className="font-inter font-extrabold text-headline-lg text-on-bg tracking-tight leading-tight mb-6">
-                Czysty projektowo.<br />Niezawodny w działaniu.
-              </h2>
+            </AnimateIn>
+            <GSAPChars
+              as="h2"
+              className="font-inter font-extrabold text-headline-lg text-on-bg tracking-tight leading-tight mb-6"
+              delay={0.1}
+            >
+              Czysty projektowo.<br />Niezawodny w działaniu.
+            </GSAPChars>
+            <AnimateIn delay={0.2}>
               <p className="text-body-lg text-on-variant mb-8">
                 Willa w Białymstoku wyposażona w kompletny system KNX obejmujący 48 stref
                 oświetleniowych, automatyczne rolety, klimatyzację i system alarmowy.
@@ -243,8 +247,8 @@ export default function OfertaPage() {
               <Link href="/realizacje" className="btn-primary">
                 Zobacz wszystkie realizacje <ArrowRight size={15} />
               </Link>
-            </div>
-          </AnimateIn>
+            </AnimateIn>
+          </div>
         </div>
       </section>
 

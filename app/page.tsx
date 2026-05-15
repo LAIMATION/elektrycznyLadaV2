@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { SectionHeader } from '@/components/ui/SectionHeader'
 import { AnimateIn, StaggerContainer, StaggerItem } from '@/components/ui/AnimateIn'
-import { GSAPChars, GSAPTypewriter } from '@/components/ui/GSAPText'
+import { GSAPChars, GSAPTypewriter, GSAPWords } from '@/components/ui/GSAPText'
 import { StatusBadge } from '@/components/ui/StatusIndicator'
 import {
   Zap, ShieldCheck, Ruler, ArrowRight, ChevronRight,
@@ -311,9 +311,11 @@ export default function HomePage() {
             <p className="mono text-mono-xs uppercase tracking-widest text-on-iskra/70 mb-3">
               NASTĘPNY_KROK
             </p>
-            <h2 className="font-inter font-extrabold text-headline-lg text-on-iskra leading-tight tracking-tight">
-              Gotowy na kolejny etap?
-            </h2>
+            <GSAPWords
+              text="Gotowy na kolejny etap?"
+              as="h2"
+              className="font-inter font-extrabold text-headline-lg text-on-iskra leading-tight tracking-tight"
+            />
             <p className="text-body-lg text-on-iskra/80 mt-3 max-w-lg">
               Opisz swój projekt, a przygotuję bezpłatną wycenę w ciągu 24 godzin.
             </p>

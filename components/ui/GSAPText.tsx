@@ -11,14 +11,21 @@ if (typeof window !== 'undefined') {
 
 // ── Helpers ───────────────────────────────────────────────────────────
 
+// Each word is wrapped in a white-space:nowrap inline-block container so the
+// browser can only break lines between words, never mid-word.
 function splitToChars(children: ReactNode): ReactNode[] {
   const out: ReactNode[] = []
   let k = 0
 
-  function process(node: ReactNode) {
-    if (typeof node === 'string') {
-      node.split('').forEach((ch) => {
-        out.push(
+  function processText(text: string) {
+    const tokens = text.split(/(\s+)/)
+    for (const token of tokens) {
+      if (!token) continue
+      if (/^\s/.test(token)) {
+        // Raw string → React text node → natural word-break opportunity
+        out.push(token)
+      } else {
+        const chars = Array.from(token).map((ch) => (
           <span
             key={k++}
             className="gsap-char"
@@ -28,12 +35,23 @@ function splitToChars(children: ReactNode): ReactNode[] {
               backfaceVisibility: 'hidden',
             }}
           >
-            {ch === ' ' ? ' ' : ch}
+            {ch}
+          </span>
+        ))
+        out.push(
+          <span key={`w${k++}`} style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
+            {chars}
           </span>
         )
-      })
+      }
+    }
+  }
+
+  function process(node: ReactNode) {
+    if (typeof node === 'string') {
+      processText(node)
     } else if (isValidElement(node)) {
-      out.push(node)
+      out.push(node) // preserves <br /> and other JSX elements
     } else if (Array.isArray(node)) {
       node.forEach(process)
     }
@@ -59,7 +77,7 @@ function splitToWords(text: string): ReactNode[] {
 }
 
 // ── GSAPChars ─────────────────────────────────────────────────────────
-// Char-by-char blur + rise — for hero h1 display headlines
+// Char-by-char blur + rise — hero h1 display headlines
 export function GSAPChars({
   children,
   as: Tag = 'h1',
@@ -104,7 +122,7 @@ export function GSAPChars({
 }
 
 // ── GSAPWords ─────────────────────────────────────────────────────────
-// Word-by-word stagger — for section titles and subtitles
+// Word-by-word stagger — section titles and CTA headings
 export function GSAPWords({
   text,
   as: Tag = 'h2',
@@ -148,7 +166,7 @@ export function GSAPWords({
 }
 
 // ── GSAPTypewriter ────────────────────────────────────────────────────
-// Typewriter reveal — for mono technical labels ("SECTION_01 // ...")
+// Typewriter reveal — mono technical labels ("SECTION_01 // ...")
 export function GSAPTypewriter({
   text,
   className,

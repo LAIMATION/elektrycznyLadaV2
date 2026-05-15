@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { AnimateIn, StaggerContainer, StaggerItem } from '@/components/ui/AnimateIn'
-import { GSAPChars, GSAPTypewriter } from '@/components/ui/GSAPText'
+import { GSAPChars, GSAPTypewriter, GSAPWords } from '@/components/ui/GSAPText'
 import { FilterBar } from '@/components/ui/FilterBar'
 import { SectionHeader } from '@/components/ui/SectionHeader'
 import { ArrowRight, Clock, Calculator, FileText, CheckSquare } from 'lucide-react'
@@ -218,8 +218,15 @@ export function WiedzaClient() {
             transition={{ duration: 0.35, ease: [0.4, 0, 0, 1] }}
           >
             {(activeFilter === 'wszystko' ? ARTICLES.filter((a) => !a.featured) : visibleArticles).map(
-              (article) => (
-                <article key={article.id} className="card-industrial overflow-hidden group">
+              (article, i) => (
+                <motion.article
+                  key={article.id}
+                  initial={{ opacity: 0, y: 28, scale: 0.97 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true, margin: '-50px' }}
+                  transition={{ duration: 0.65, delay: i * 0.07, ease: [0.16, 1, 0.3, 1] }}
+                  className="card-industrial overflow-hidden group"
+                >
                   <div className="relative h-44 overflow-hidden">
                     <Image
                       src={article.img}
@@ -248,7 +255,7 @@ export function WiedzaClient() {
                       <ArrowRight size={12} />
                     </div>
                   </div>
-                </article>
+                </motion.article>
               )
             )}
           </motion.div>
@@ -298,9 +305,11 @@ export function WiedzaClient() {
             <p className="mono text-mono-xs uppercase tracking-widest text-on-iskra/70 mb-3">
               NASTĘPNY_KROK
             </p>
-            <h2 className="font-inter font-extrabold text-headline-lg text-on-iskra tracking-tight leading-tight">
-              Masz projekt do omówienia?
-            </h2>
+            <GSAPWords
+              text="Masz projekt do omówienia?"
+              as="h2"
+              className="font-inter font-extrabold text-headline-lg text-on-iskra tracking-tight leading-tight"
+            />
             <p className="text-body-lg text-on-iskra/80 mt-3 max-w-lg">
               Skontaktuj się – odpowiem na pytania techniczne i przygotuję bezpłatną wycenę.
             </p>

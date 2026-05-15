@@ -4,8 +4,8 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
-import { AnimateIn } from '@/components/ui/AnimateIn'
-import { GSAPChars, GSAPTypewriter } from '@/components/ui/GSAPText'
+import { AnimateIn, RevealImage } from '@/components/ui/AnimateIn'
+import { GSAPChars, GSAPTypewriter, GSAPWords } from '@/components/ui/GSAPText'
 import { FilterBar } from '@/components/ui/FilterBar'
 import { ArrowRight, ExternalLink } from 'lucide-react'
 
@@ -158,9 +158,8 @@ export function RealizacjeClient() {
 
       {/* Featured project */}
       <section className="pb-16 px-6 md:px-12 max-w-7xl mx-auto">
-        <AnimateIn>
           <Link href="#" className="group block">
-            <div className="relative h-[420px] md:h-[520px] overflow-hidden bg-surface-container rounded-2xl">
+            <RevealImage className="relative h-[420px] md:h-[520px] overflow-hidden bg-surface-container rounded-2xl">
               <Image
                 src={PROJECTS[0].img}
                 alt={PROJECTS[0].title}
@@ -189,9 +188,8 @@ export function RealizacjeClient() {
                   <ExternalLink size={14} />
                 </div>
               </div>
-            </div>
+            </RevealImage>
           </Link>
-        </AnimateIn>
       </section>
 
       {/* ── Filter + Grid ─────────────────────────────────── */}
@@ -215,8 +213,15 @@ export function RealizacjeClient() {
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.35, ease: [0.4, 0, 0, 1] }}
           >
-            {visible.map((project) => (
-              <article key={project.id} className="card-industrial overflow-hidden group">
+            {visible.map((project, i) => (
+              <motion.article
+                key={project.id}
+                initial={{ opacity: 0, y: 28, scale: 0.97 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.65, delay: i * 0.07, ease: [0.16, 1, 0.3, 1] }}
+                className="card-industrial overflow-hidden group"
+              >
                 <div className="relative h-52 overflow-hidden">
                   <Image
                     src={project.img}
@@ -249,7 +254,7 @@ export function RealizacjeClient() {
                   </p>
                   <p className="text-body-md text-on-variant text-[14px]">{project.desc}</p>
                 </div>
-              </article>
+              </motion.article>
             ))}
           </motion.div>
         </AnimatePresence>
@@ -268,9 +273,11 @@ export function RealizacjeClient() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           <div>
             <div className="signature-line w-16" />
-            <h2 className="font-inter font-extrabold text-headline-lg text-on-bg tracking-tight leading-tight">
-              Gotowy na kolejny etap?
-            </h2>
+            <GSAPWords
+              text="Gotowy na kolejny etap?"
+              as="h2"
+              className="font-inter font-extrabold text-headline-lg text-on-bg tracking-tight leading-tight"
+            />
             <p className="text-body-lg text-on-variant mt-3 max-w-lg">
               Opisz swój projekt, a przygotujemy bezpłatną wycenę w ciągu 24 godzin.
             </p>
