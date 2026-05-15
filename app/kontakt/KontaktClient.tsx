@@ -1,15 +1,63 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Image from 'next/image'
+import { motion, AnimatePresence } from 'framer-motion'
 import { AnimateIn, StaggerContainer, StaggerItem } from '@/components/ui/AnimateIn'
 import { GSAPChars, GSAPTypewriter } from '@/components/ui/GSAPText'
 import { StatusBadge } from '@/components/ui/StatusIndicator'
-import { MapPin, Phone, Mail, Send, CheckCircle2, Instagram, Facebook } from 'lucide-react'
+import { MapPin, Phone, Mail, Send, CheckCircle2, Instagram, Facebook, ChevronDown } from 'lucide-react'
 
-const QUOTE_MESSAGE =
-  'Dzień dobry, proszę o przygotowanie darmowej wyceny dla mojego projektu...'
+type CategoryKey = 'default' | 'new' | 'existing' | 'emergency' | 'quote' | 'other'
+
+const CATEGORIES: { key: CategoryKey; label: string; placeholder: string }[] = [
+  {
+    key: 'default',
+    label: 'Domyślna',
+    placeholder: 'Opisz swój projekt lub zadaj pytanie...',
+  },
+  {
+    key: 'new',
+    label: 'Nowa instalacja',
+    placeholder: 'Np. Planuję nową instalację elektryczną w domu 180 m² – budowa w stanie deweloperskim. Proszę o kontakt i wycenę...',
+  },
+  {
+    key: 'existing',
+    label: 'Istniejąca instalacja',
+    placeholder: 'Np. Mam instalację z lat 90. i chcę ją zmodernizować. Budynek mieszkalny, 3 pokoje, Białystok. Proszę o informację o zakresie prac...',
+  },
+  {
+    key: 'emergency',
+    label: 'Awaria',
+    placeholder: 'Np. Wybiły bezpieczniki i nie można ich włączyć z powrotem. Adres: ul. Lipowa 5, Białystok. Proszę o pilny kontakt...',
+  },
+  {
+    key: 'quote',
+    label: 'Wycena',
+    placeholder: 'Dzień dobry, proszę o przygotowanie darmowej wyceny dla mojego projektu...',
+  },
+  {
+    key: 'other',
+    label: 'Inne',
+    placeholder: 'Wpisz swoją wiadomość...',
+  },
+]
+
+const LIMITS = { name: 60, phone: 20, email: 100, message: 600 }
+
+function CharCounter({ current, max }: { current: number; max: number }) {
+  const near = current >= max * 0.8
+  return (
+    <span
+      className={`mono text-[10px] tabular-nums transition-colors duration-200 ${
+        near ? 'text-iskra' : 'text-on-variant/50'
+      }`}
+    >
+      {current}/{max}
+    </span>
+  )
+}
 
 const GALLERY_IMAGES = [
   {
@@ -33,18 +81,30 @@ export function KontaktClient() {
   const searchParams = useSearchParams()
   const isQuote = searchParams.get('wycena') === '1'
 
+  const [category, setCategory] = useState<CategoryKey>(isQuote ? 'quote' : 'default')
+  const [toolbarOpen, setToolbarOpen] = useState(false)
   const [form, setForm] = useState({
     name: '',
     phone: '',
     email: '',
-    message: isQuote ? QUOTE_MESSAGE : '',
+    message: isQuote ? CATEGORIES.find((c) => c.key === 'quote')!.placeholder : '',
   })
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
   const messageRef = useRef<HTMLTextAreaElement>(null)
 
+  const currentCategory = CATEGORIES.find((c) => c.key === category)!
+
+  const autoResize = useCallback(() => {
+    const el = messageRef.current
+    if (!el) return
+    el.style.height = 'auto'
+    el.style.height = `${el.scrollHeight}px`
+  }, [])
+
   useEffect(() => {
     if (isQuote) {
-      setForm((f) => ({ ...f, message: QUOTE_MESSAGE }))
+      setCategory('quote')
+      setForm((f) => ({ ...f, message: '' }))
       setTimeout(() => {
         messageRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })
         messageRef.current?.focus()
@@ -52,8 +112,19 @@ export function KontaktClient() {
     }
   }, [isQuote])
 
+  useEffect(() => {
+    autoResize()
+  }, [form.message, autoResize])
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
+  }
+
+  const handleCategorySelect = (key: CategoryKey) => {
+    setCategory(key)
+    setToolbarOpen(false)
+    setForm((f) => ({ ...f, message: '' }))
+    setTimeout(() => autoResize(), 10)
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -63,7 +134,7 @@ export function KontaktClient() {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, category }),
       })
       if (res.ok) {
         setStatus('sent')
@@ -204,73 +275,148 @@ export function KontaktClient() {
                       Dziękuję za kontakt. Odpiszę w ciągu 24 godzin.
                     </p>
                   </div>
-                  <button
-                    onClick={() => setStatus('idle')}
-                    className="btn-ghost"
-                  >
+                  <button onClick={() => setStatus('idle')} className="btn-ghost">
                     Wyślij kolejną wiadomość
                   </button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} noValidate>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8 mb-8">
+                  {/* ── Category toolbar ───────────────────── */}
+                  <div className="mb-8">
+                    <p className="mono text-mono-xs uppercase tracking-widest text-on-variant mb-3">
+                      KATEGORIA_ZAPYTANIA
+                    </p>
+
+                    {/* Collapsed trigger pill */}
+                    <div className="flex items-center gap-3 flex-wrap">
+                      <button
+                        type="button"
+                        onClick={() => setToolbarOpen((o) => !o)}
+                        className="flex items-center gap-2 px-4 py-2 rounded-full border border-iskra bg-iskra/10 text-on-bg mono text-mono-xs uppercase tracking-widest transition-all duration-200 hover:bg-iskra/20"
+                      >
+                        <span>{currentCategory.label}</span>
+                        <motion.span
+                          animate={{ rotate: toolbarOpen ? 180 : 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="flex items-center"
+                        >
+                          <ChevronDown size={13} className="text-iskra" />
+                        </motion.span>
+                      </button>
+
+                      {/* Sliding category pills */}
+                      <AnimatePresence>
+                        {toolbarOpen && (
+                          <motion.div
+                            className="flex items-center gap-2 flex-wrap"
+                            initial="hidden"
+                            animate="visible"
+                            exit="hidden"
+                          >
+                            {CATEGORIES.filter((c) => c.key !== category).map((cat, i) => (
+                              <motion.button
+                                key={cat.key}
+                                type="button"
+                                onClick={() => handleCategorySelect(cat.key)}
+                                variants={{
+                                  hidden: { opacity: 0, x: -16 },
+                                  visible: {
+                                    opacity: 1,
+                                    x: 0,
+                                    transition: { delay: i * 0.05, ease: [0.4, 0, 0, 1], duration: 0.25 },
+                                  },
+                                }}
+                                className="px-4 py-2 rounded-full border border-outline-variant text-on-variant mono text-mono-xs uppercase tracking-widest transition-all duration-200 hover:border-iskra hover:text-iskra hover:bg-iskra/5"
+                              >
+                                {cat.label}
+                              </motion.button>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  </div>
+
+                  {/* ── Fields ─────────────────────────────── */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-7 mb-8">
                     {/* Name */}
                     <div>
-                      <label htmlFor="name" className="input-label">Imię i Nazwisko</label>
+                      <div className="flex items-center justify-between mb-2">
+                        <label htmlFor="name" className="input-label">Imię i Nazwisko</label>
+                        <CharCounter current={form.name.length} max={LIMITS.name} />
+                      </div>
                       <input
                         id="name"
                         name="name"
                         type="text"
                         required
+                        maxLength={LIMITS.name}
                         placeholder="Jan Kowalski"
                         value={form.name}
                         onChange={handleChange}
-                        className="input-underline"
+                        className="input-pill"
                         autoComplete="name"
                       />
                     </div>
+
                     {/* Phone */}
                     <div>
-                      <label htmlFor="phone" className="input-label">Telefon</label>
+                      <div className="flex items-center justify-between mb-2">
+                        <label htmlFor="phone" className="input-label">Telefon</label>
+                        <CharCounter current={form.phone.length} max={LIMITS.phone} />
+                      </div>
                       <input
                         id="phone"
                         name="phone"
                         type="tel"
+                        maxLength={LIMITS.phone}
                         placeholder="+48 000 000 000"
                         value={form.phone}
                         onChange={handleChange}
-                        className="input-underline"
+                        className="input-pill"
                         autoComplete="tel"
                       />
                     </div>
+
                     {/* Email */}
                     <div className="md:col-span-2">
-                      <label htmlFor="email" className="input-label">Adres e-mail</label>
+                      <div className="flex items-center justify-between mb-2">
+                        <label htmlFor="email" className="input-label">Adres e-mail</label>
+                        <CharCounter current={form.email.length} max={LIMITS.email} />
+                      </div>
                       <input
                         id="email"
                         name="email"
                         type="email"
                         required
+                        maxLength={LIMITS.email}
                         placeholder="jan@przyklad.pl"
                         value={form.email}
                         onChange={handleChange}
-                        className="input-underline"
+                        className="input-pill"
                         autoComplete="email"
                       />
                     </div>
+
                     {/* Message */}
                     <div className="md:col-span-2">
-                      <label htmlFor="message" className="input-label">Wiadomość / Opis projektu</label>
+                      <div className="flex items-center justify-between mb-2">
+                        <label htmlFor="message" className="input-label">Wiadomość / Opis projektu</label>
+                        <CharCounter current={form.message.length} max={LIMITS.message} />
+                      </div>
                       <textarea
                         id="message"
                         name="message"
                         ref={messageRef}
                         required
-                        rows={6}
-                        placeholder="Opisz swój projekt lub zadaj pytanie..."
+                        maxLength={LIMITS.message}
+                        placeholder={currentCategory.placeholder}
                         value={form.message}
-                        onChange={handleChange}
-                        className="input-underline resize-none"
+                        onChange={(e) => {
+                          handleChange(e)
+                          autoResize()
+                        }}
+                        className="textarea-pill"
                       />
                     </div>
                   </div>
