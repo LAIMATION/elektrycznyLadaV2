@@ -128,27 +128,28 @@ body {
   border-radius: 9999px;
   border: none;
   cursor: pointer;
+  outline: none;
   text-decoration: none;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.12);
+  transition: background-color 0.3s ease 0s, transform 0.3s ease 0s, box-shadow 0.3s ease 0s;
 }
 .btn-primary:hover {
   background-color: #E8A020;
-  box-shadow: 0px 15px 20px rgba(245, 200, 66, 0.4);
-  transform: translateY(-5px);
+  box-shadow: 0px 20px 30px rgba(245, 200, 66, 0.5);
+  transform: translateY(-7px);
 }
 .btn-primary:active {
   transform: translateY(-1px);
-  box-shadow: 0px 5px 10px rgba(245, 200, 66, 0.25);
+  box-shadow: 0px 6px 12px rgba(245, 200, 66, 0.3);
 }
 .dark .btn-primary {
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.45);
 }
 .dark .btn-primary:hover {
-  box-shadow: 0px 15px 20px rgba(245, 200, 66, 0.3);
+  box-shadow: 0px 20px 30px rgba(245, 200, 66, 0.35);
 }
 .dark .btn-primary:active {
-  box-shadow: 0px 5px 10px rgba(245, 200, 66, 0.15);
+  box-shadow: 0px 6px 12px rgba(245, 200, 66, 0.18);
 }
 
 /* ─── Ghost button (pill) ────────────────────────────── */
@@ -167,28 +168,29 @@ body {
   border-radius: 9999px;
   border: 2px solid var(--outline-variant);
   cursor: pointer;
+  outline: none;
   text-decoration: none;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.06);
-  transition: border-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.07);
+  transition: border-color 0.3s ease 0s, color 0.3s ease 0s, transform 0.3s ease 0s, box-shadow 0.3s ease 0s;
 }
 .btn-ghost:hover {
   border-color: #F5C842;
   color: #F5C842;
-  transform: translateY(-5px);
-  box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-7px);
+  box-shadow: 0px 18px 28px rgba(245, 200, 66, 0.2);
 }
 .btn-ghost:active {
   transform: translateY(-1px);
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.06);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.07);
 }
 .dark .btn-ghost {
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.35);
 }
 .dark .btn-ghost:hover {
-  box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 18px 28px rgba(245, 200, 66, 0.15);
 }
 
-/* ─── CTA button (white, on yellow background) ───────── */
+/* ─── CTA button (dark, on yellow background) ───────── */
 .btn-cta {
   display: inline-flex;
   align-items: center;
@@ -204,17 +206,18 @@ body {
   border-radius: 9999px;
   border: none;
   cursor: pointer;
+  outline: none;
   text-decoration: none;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.18s ease;
+  box-shadow: 0px 8px 18px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease 0s, box-shadow 0.3s ease 0s, opacity 0.18s ease;
 }
 .btn-cta:hover {
-  transform: translateY(-5px);
-  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.3);
+  transform: translateY(-7px);
+  box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.35);
 }
 .btn-cta:active {
   transform: translateY(-1px);
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.22);
 }
 
 /* ─── CTA outline button (on yellow background) ─────── */
@@ -231,19 +234,21 @@ body {
   text-transform: uppercase;
   padding: 1rem 2rem;
   border-radius: 9999px;
-  border: 2px solid rgba(17, 17, 17, 0.4);
+  border: 2px solid rgba(17, 17, 17, 0.45);
   cursor: pointer;
+  outline: none;
   text-decoration: none;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
-  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease 0s, transform 0.3s ease 0s, box-shadow 0.3s ease 0s;
 }
 .btn-cta-outline:hover {
   border-color: #111111;
-  transform: translateY(-5px);
-  box-shadow: 0px 12px 18px rgba(0, 0, 0, 0.15);
+  transform: translateY(-7px);
+  box-shadow: 0px 18px 26px rgba(0, 0, 0, 0.18);
 }
 .btn-cta-outline:active {
   transform: translateY(-1px);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* ─── Input underline style ──────────────────────────── */
