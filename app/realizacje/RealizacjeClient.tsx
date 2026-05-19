@@ -160,20 +160,17 @@ export function RealizacjeClient() {
                 className="object-cover opacity-80 group-hover:scale-105 transition-transform duration-700"
                 unoptimized
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-bg/90 via-bg/30 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent" />
               <div className="absolute top-6 right-6">
-                <span className="mono text-mono-xs bg-iskra text-on-iskra px-3 py-1.5 rounded-full">
-                  PROJEKT WYRÓŻNIONY
+                <span className="mono text-mono-xs bg-iskra/85 backdrop-blur-sm text-on-iskra px-3 py-1.5 rounded-full">
+                  {PROJECTS[0].tags.join(' · ')} · {PROJECTS[0].year}
                 </span>
               </div>
               <div className="absolute bottom-8 left-8 right-8">
-                <p className="mono text-mono-xs text-iskra mb-3">
-                  {PROJECTS[0].tags.join(' // ')} · {PROJECTS[0].year}
-                </p>
-                <h2 className="font-inter font-extrabold text-headline-lg text-on-bg mb-2">
+                <h2 className="font-inter font-extrabold text-headline-lg text-white mb-2">
                   {PROJECTS[0].title} – {PROJECTS[0].location}
                 </h2>
-                <p className="text-body-lg text-on-variant max-w-2xl hidden md:block">
+                <p className="text-body-lg text-white/75 max-w-2xl hidden md:block">
                   {PROJECTS[0].desc}
                 </p>
                 <div className="mt-4 flex items-center gap-2 text-iskra mono text-mono-xs uppercase group-hover:gap-4 transition-all duration-300">

@@ -160,9 +160,9 @@ export function WiedzaClient() {
                     className="object-cover opacity-80 group-hover:scale-105 transition-transform duration-700"
                     unoptimized
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-bg/80 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                   <div className="absolute top-4 left-4">
-                    <span className="mono text-[10px] uppercase tracking-widest border border-iskra text-iskra px-2.5 py-1 rounded-full">
+                    <span className="mono text-[10px] uppercase tracking-widest bg-iskra/85 backdrop-blur-sm text-on-iskra px-3 py-1.5 rounded-full">
                       Wyróżniony
                     </span>
                   </div>

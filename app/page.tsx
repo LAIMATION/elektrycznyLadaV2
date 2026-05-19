@@ -231,12 +231,12 @@ export default function HomePage() {
                 className="object-cover opacity-80"
                 unoptimized
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-bg/85 via-bg/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
               <div className="absolute bottom-6 left-6 right-6">
                 <span className="inline-flex items-center bg-iskra/85 backdrop-blur-sm text-on-iskra mono text-[10px] uppercase tracking-widest px-2.5 py-1 rounded-full mb-3">
                   {cat.replace(/_/g, ' ')}, {year}
                 </span>
-                <h4 className="font-inter font-bold text-headline-md text-on-bg">{title}</h4>
+                <h4 className="font-inter font-bold text-headline-md text-white">{title}</h4>
               </div>
             </AnimateIn>
           ))}
@@ -263,12 +263,12 @@ export default function HomePage() {
                   className="object-cover opacity-80"
                   unoptimized
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-bg/85 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 to-transparent" />
                 <div className="absolute bottom-5 left-5 right-5">
-                  <span className="inline-flex items-center bg-bg/60 backdrop-blur-sm border border-outline-variant/30 text-on-bg mono text-[10px] uppercase tracking-widest px-2.5 py-1 rounded-full mb-2">
+                  <span className="inline-flex items-center bg-iskra/85 backdrop-blur-sm text-on-iskra mono text-[10px] uppercase tracking-widest px-2.5 py-1 rounded-full mb-2">
                     {cat.replace(/_/g, ' ')}, {year}
                   </span>
-                  <h4 className="font-inter font-bold text-[16px] text-on-bg">{title}</h4>
+                  <h4 className="font-inter font-bold text-[16px] text-white">{title}</h4>
                 </div>
               </div>
             </StaggerItem>
