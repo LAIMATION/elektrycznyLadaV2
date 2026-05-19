@@ -5,8 +5,7 @@ import { useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { AnimateIn, StaggerContainer, StaggerItem } from '@/components/ui/AnimateIn'
-import { GSAPChars, GSAPTypewriter } from '@/components/ui/GSAPText'
-import { StatusBadge } from '@/components/ui/StatusIndicator'
+import { GSAPChars } from '@/components/ui/GSAPText'
 import { MapPin, Phone, Mail, Send, CheckCircle2, Instagram, Facebook, ChevronDown } from 'lucide-react'
 
 type CategoryKey = 'default' | 'new' | 'existing' | 'emergency' | 'quote' | 'other'
@@ -151,13 +150,6 @@ export function KontaktClient() {
     <>
       {/* ── Hero ─────────────────────────────────────────── */}
       <section className="pt-32 pb-16 px-6 md:px-12 max-w-7xl mx-auto">
-        <AnimateIn>
-          <div className="signature-line w-24" />
-          <GSAPTypewriter
-            text="CONTACT_INIT // SYSTEM_READY"
-            className="mono text-mono-xs uppercase tracking-widest text-primary mt-4 mb-4 block"
-          />
-        </AnimateIn>
         <GSAPChars
           as="h1"
           className="font-inter font-extrabold text-display-lg text-on-bg leading-none tracking-tight mb-4 max-w-2xl"
@@ -179,9 +171,6 @@ export function KontaktClient() {
           {/* Info column */}
           <div className="md:col-span-4">
             <AnimateIn>
-              <div className="mb-8">
-                <StatusBadge />
-              </div>
               <address className="not-italic flex flex-col gap-6 mb-10">
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 border border-outline-variant flex items-center justify-center flex-shrink-0 rounded-xl">

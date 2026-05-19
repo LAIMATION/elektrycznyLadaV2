@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { SectionHeader } from '@/components/ui/SectionHeader'
 import { AnimateIn, StaggerContainer, StaggerItem, RevealImage } from '@/components/ui/AnimateIn'
-import { GSAPChars, GSAPTypewriter, GSAPWords } from '@/components/ui/GSAPText'
+import { GSAPChars, GSAPWords } from '@/components/ui/GSAPText'
 import {
   Zap, Cpu, Home, CheckCircle2, ArrowRight, ShieldCheck,
   Clock, Award, Wrench
@@ -96,13 +96,6 @@ export default function OfertaPage() {
     <>
       {/* ── Hero ─────────────────────────────────────────── */}
       <section className="pt-32 pb-20 px-6 md:px-12 max-w-7xl mx-auto">
-        <AnimateIn>
-          <div className="signature-line w-24" />
-          <GSAPTypewriter
-            text="SERVICES_CATALOG // SECTION_INDEX"
-            className="mono text-mono-xs uppercase tracking-widest text-primary mt-4 mb-4 block"
-          />
-        </AnimateIn>
         <GSAPChars
           as="h1"
           className="font-inter font-extrabold text-display-lg text-on-bg leading-none tracking-tight mb-6 max-w-3xl"
@@ -212,12 +205,6 @@ export default function OfertaPage() {
             </div>
           </RevealImage>
           <div>
-            <AnimateIn delay={0.05}>
-              <div className="signature-line" />
-              <p className="mono text-mono-xs uppercase tracking-widest text-primary mb-4">
-                PROJEKT_REFERENCYJNY // SMART_HOME
-              </p>
-            </AnimateIn>
             <GSAPChars
               as="h2"
               className="font-inter font-extrabold text-headline-lg text-on-bg tracking-tight leading-tight mb-6"
@@ -256,12 +243,6 @@ export default function OfertaPage() {
       <section className="bg-iskra py-16 px-6 md:px-12">
         <div className="max-w-7xl mx-auto">
           <AnimateIn className="mb-12">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="h-0.5 w-8 bg-on-iskra/50" />
-              <p className="mono text-mono-xs uppercase tracking-widest text-on-iskra/80">
-                GWARANCJA_ISKRA // SECTION_04
-              </p>
-            </div>
             <h2 className="font-inter font-extrabold text-headline-lg text-on-iskra tracking-tight leading-tight">
               Gwarancja elektrycznyŁada
             </h2>

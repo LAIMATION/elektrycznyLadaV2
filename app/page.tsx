@@ -3,8 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { SectionHeader } from '@/components/ui/SectionHeader'
 import { AnimateIn, StaggerContainer, StaggerItem } from '@/components/ui/AnimateIn'
-import { GSAPChars, GSAPTypewriter, GSAPWords } from '@/components/ui/GSAPText'
-import { StatusBadge } from '@/components/ui/StatusIndicator'
+import { GSAPChars, GSAPWords } from '@/components/ui/GSAPText'
 import {
   Zap, ShieldCheck, Ruler, ArrowRight, ChevronRight,
   Cpu, Home, Wrench
@@ -85,22 +84,6 @@ export default function HomePage() {
       <section className="min-h-screen flex flex-col justify-center pt-16 px-6 md:px-12 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center py-20 md:py-0">
           <div className="md:col-span-7">
-            <AnimateIn delay={0}>
-              <div className="mb-6">
-                <StatusBadge />
-              </div>
-            </AnimateIn>
-
-            <AnimateIn delay={0.05}>
-              <div className="signature-line w-24 mb-0" style={{ marginBottom: 0 }} />
-            </AnimateIn>
-
-            <GSAPTypewriter
-              text="SYSTEMS_ENGINEERING // VER 2.4"
-              className="mono text-mono-xs uppercase tracking-widest text-primary mt-4 mb-4 block"
-              delay={0.3}
-            />
-
             <GSAPChars
               as="h1"
               className="font-inter font-extrabold text-display-lg text-on-bg leading-none tracking-tight mb-6"
@@ -308,9 +291,6 @@ export default function HomePage() {
       <section className="bg-iskra py-20 px-6 md:px-12">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           <div>
-            <p className="mono text-mono-xs uppercase tracking-widest text-on-iskra/70 mb-3">
-              NASTĘPNY_KROK
-            </p>
             <GSAPWords
               text="Gotowy na kolejny etap?"
               as="h2"

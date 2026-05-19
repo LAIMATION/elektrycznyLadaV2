@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { AnimateIn, StaggerContainer, StaggerItem } from '@/components/ui/AnimateIn'
-import { GSAPChars, GSAPTypewriter, GSAPWords } from '@/components/ui/GSAPText'
+import { GSAPChars, GSAPWords } from '@/components/ui/GSAPText'
 import { FilterBar } from '@/components/ui/FilterBar'
 import { SectionHeader } from '@/components/ui/SectionHeader'
 import { ArrowRight, Clock, Calculator, FileText, CheckSquare } from 'lucide-react'
@@ -131,13 +131,6 @@ export function WiedzaClient() {
     <>
       {/* ── Hero ─────────────────────────────────────────── */}
       <section className="pt-32 pb-16 px-6 md:px-12 max-w-7xl mx-auto">
-        <AnimateIn>
-          <div className="signature-line w-24" />
-          <GSAPTypewriter
-            text="KNOWLEDGE_BASE // TECH_ARTICLES"
-            className="mono text-mono-xs uppercase tracking-widest text-primary mt-4 mb-4 block"
-          />
-        </AnimateIn>
         <GSAPChars
           as="h1"
           className="font-inter font-extrabold text-display-lg text-on-bg leading-none tracking-tight mb-6 max-w-4xl"
@@ -199,12 +192,6 @@ export function WiedzaClient() {
       {/* ── Filter + Articles grid ────────────────────────── */}
       <section className="pb-24 px-6 md:px-12 max-w-7xl mx-auto">
         <AnimateIn className="mb-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
-          <div>
-            <div className="signature-line w-16 mb-0" style={{ marginBottom: 0 }} />
-            <p className="mono text-mono-xs uppercase tracking-widest text-primary mt-3">
-              ARCHIWUM_ARTYKUŁÓW
-            </p>
-          </div>
           <FilterBar filters={FILTERS} onChange={setActiveFilter} />
         </AnimateIn>
 
@@ -284,7 +271,6 @@ export function WiedzaClient() {
                       {status}
                     </span>
                   </div>
-                  <p className="mono text-mono-xs text-on-variant uppercase tracking-widest mb-3">{tag}</p>
                   <h3 className="font-inter font-bold text-on-bg text-[17px] mb-3">{title}</h3>
                   <p className="text-body-md text-on-variant text-[14px] mb-6">{desc}</p>
                   <div className="flex items-center gap-2 text-iskra mono text-mono-xs uppercase group-hover:gap-4 transition-all duration-300">
@@ -302,9 +288,6 @@ export function WiedzaClient() {
       <section className="bg-iskra py-20 px-6 md:px-12">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           <div>
-            <p className="mono text-mono-xs uppercase tracking-widest text-on-iskra/70 mb-3">
-              NASTĘPNY_KROK
-            </p>
             <GSAPWords
               text="Masz projekt do omówienia?"
               as="h2"

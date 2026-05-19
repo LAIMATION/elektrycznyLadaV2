@@ -134,13 +134,6 @@ export function RealizacjeClient() {
     <>
       {/* ── Hero ─────────────────────────────────────────── */}
       <section className="pt-32 pb-16 px-6 md:px-12 max-w-7xl mx-auto">
-        <AnimateIn>
-          <div className="signature-line w-24" />
-          <GSAPTypewriter
-            text="TECHNICAL_LOG // PROJECT_ARCHIVE"
-            className="mono text-mono-xs uppercase tracking-widest text-primary mt-4 mb-4 block"
-          />
-        </AnimateIn>
         <GSAPChars
           as="h1"
           className="font-inter font-extrabold text-display-lg text-on-bg leading-none tracking-tight mb-6 max-w-3xl"
@@ -194,13 +187,7 @@ export function RealizacjeClient() {
 
       {/* ── Filter + Grid ─────────────────────────────────── */}
       <section className="pb-24 px-6 md:px-12 max-w-7xl mx-auto">
-        <AnimateIn className="mb-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
-          <div>
-            <div className="signature-line w-16 mb-0" style={{ marginBottom: 0 }} />
-            <p className="mono text-mono-xs uppercase tracking-widest text-primary mt-3">
-              FILTRY_KATEGORII
-            </p>
-          </div>
+        <AnimateIn className="mb-10 flex justify-end">
           <FilterBar filters={FILTERS} onChange={setActiveFilter} />
         </AnimateIn>
 
@@ -272,7 +259,6 @@ export function RealizacjeClient() {
       <section className="bg-surface border-t border-outline-variant py-20 px-6 md:px-12">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           <div>
-            <div className="signature-line w-16" />
             <GSAPWords
               text="Gotowy na kolejny etap?"
               as="h2"
