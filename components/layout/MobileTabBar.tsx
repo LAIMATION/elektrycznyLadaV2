@@ -85,14 +85,6 @@ export function MobileTabBar() {
             exit="exit"
           >
             <div className="px-5 pt-7 pb-7">
-              {/* Label */}
-              <motion.p
-                variants={itemVariants}
-                className="mono text-[10px] uppercase tracking-widest text-on-variant mb-5"
-              >
-                NAV_LINKS // 0{NAV_LINKS.length}
-              </motion.p>
-
               {/* Navigation pills */}
               <nav>
                 <ul className="flex flex-col gap-2.5">
@@ -157,6 +149,15 @@ export function MobileTabBar() {
             <span className="font-inter font-extrabold text-[14px] tracking-tight text-on-bg leading-none">
               elektrycznyŁada
             </span>
+          </Link>
+
+          {/* CTA pill */}
+          <Link
+            href="/kontakt?wycena=1"
+            onClick={() => setOpen(false)}
+            className="flex items-center gap-1.5 px-3.5 py-1.5 bg-iskra rounded-full text-on-iskra mono text-[11px] uppercase tracking-widest hover:opacity-90 transition-opacity"
+          >
+            Wycena
           </Link>
 
           {/* Menu toggle pill */}
