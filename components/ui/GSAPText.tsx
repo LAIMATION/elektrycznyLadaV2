@@ -11,8 +11,6 @@ if (typeof window !== 'undefined') {
 
 // ── Helpers ───────────────────────────────────────────────────────────
 
-// Each word is wrapped in a white-space:nowrap inline-block container so the
-// browser can only break lines between words, never mid-word.
 function splitToChars(children: ReactNode): ReactNode[] {
   const out: ReactNode[] = []
   let k = 0
@@ -22,7 +20,6 @@ function splitToChars(children: ReactNode): ReactNode[] {
     for (const token of tokens) {
       if (!token) continue
       if (/^\s/.test(token)) {
-        // Raw string → React text node → natural word-break opportunity
         out.push(token)
       } else {
         const chars = Array.from(token).map((ch) => (
@@ -31,6 +28,7 @@ function splitToChars(children: ReactNode): ReactNode[] {
             className="gsap-char"
             style={{
               display: 'inline-block',
+              opacity: 0,
               willChange: 'transform, opacity, filter',
               backfaceVisibility: 'hidden',
             }}
@@ -38,8 +36,9 @@ function splitToChars(children: ReactNode): ReactNode[] {
             {ch}
           </span>
         ))
+        // Wrapper ma tylko layout — bez opacity:0, bo GSAP animuje same znaki
         out.push(
-          <span key={`w${k++}`} style={{ display: 'inline-block', whiteSpace: 'nowrap', opacity: 0 }}>
+          <span key={`w${k++}`} style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
             {chars}
           </span>
         )
@@ -51,7 +50,7 @@ function splitToChars(children: ReactNode): ReactNode[] {
     if (typeof node === 'string') {
       processText(node)
     } else if (isValidElement(node)) {
-      out.push(node) // preserves <br /> and other JSX elements
+      out.push(node)
     } else if (Array.isArray(node)) {
       node.forEach(process)
     }
@@ -67,7 +66,7 @@ function splitToWords(text: string): ReactNode[] {
       <span
         key={i}
         className="gsap-word"
-        style={{ display: 'inline-block', willChange: 'transform, opacity', opacity: 0 }}
+        style={{ display: 'inline-block', opacity: 0, willChange: 'transform, opacity' }}
       >
         {word}
       </span>
@@ -77,7 +76,6 @@ function splitToWords(text: string): ReactNode[] {
 }
 
 // ── GSAPChars ─────────────────────────────────────────────────────────
-// Char-by-char blur + rise — hero h1 display headlines
 export function GSAPChars({
   children,
   as: Tag = 'h1',
@@ -95,20 +93,20 @@ export function GSAPChars({
     const el = ref.current
     if (!el) return
     const ctx = gsap.context(() => {
-      gsap.from(el.querySelectorAll<HTMLElement>('.gsap-char'), {
-        opacity: 0,
-        y: 48,
-        filter: 'blur(10px)',
-        stagger: 0.025,
-        duration: 0.85,
-        ease: 'power4.out',
-        delay,
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 92%',
-          once: true,
-        },
-      })
+      gsap.fromTo(
+        el.querySelectorAll<HTMLElement>('.gsap-char'),
+        { opacity: 0, y: 48, filter: 'blur(10px)' },
+        {
+          opacity: 1,
+          y: 0,
+          filter: 'blur(0px)',
+          stagger: 0.025,
+          duration: 0.85,
+          ease: 'power4.out',
+          delay,
+          scrollTrigger: { trigger: el, start: 'top 92%', once: true },
+        }
+      )
     }, el)
     return () => ctx.revert()
   }, [delay])
@@ -122,7 +120,6 @@ export function GSAPChars({
 }
 
 // ── GSAPWords ─────────────────────────────────────────────────────────
-// Word-by-word stagger — section titles and CTA headings
 export function GSAPWords({
   text,
   as: Tag = 'h2',
@@ -140,19 +137,19 @@ export function GSAPWords({
     const el = ref.current
     if (!el) return
     const ctx = gsap.context(() => {
-      gsap.from(el.querySelectorAll<HTMLElement>('.gsap-word'), {
-        opacity: 0,
-        y: 22,
-        stagger: 0.08,
-        duration: 0.65,
-        ease: 'power3.out',
-        delay,
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 88%',
-          once: true,
-        },
-      })
+      gsap.fromTo(
+        el.querySelectorAll<HTMLElement>('.gsap-word'),
+        { opacity: 0, y: 22 },
+        {
+          opacity: 1,
+          y: 0,
+          stagger: 0.08,
+          duration: 0.65,
+          ease: 'power3.out',
+          delay,
+          scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+        }
+      )
     }, el)
     return () => ctx.revert()
   }, [delay])
@@ -166,7 +163,6 @@ export function GSAPWords({
 }
 
 // ── GSAPTypewriter ────────────────────────────────────────────────────
-// Typewriter reveal — mono technical labels ("SECTION_01 // ...")
 export function GSAPTypewriter({
   text,
   className,
@@ -184,17 +180,14 @@ export function GSAPTypewriter({
     const el = ref.current
     if (!el) return
     const ctx = gsap.context(() => {
-      gsap.set(el, { text: { value: '', delimiter: '' }, opacity: 1 })
+      // opacity:1 + pusty tekst ustawiane synchronicznie przed animacją
+      gsap.set(el, { opacity: 1, text: { value: '', delimiter: '' } })
       gsap.to(el, {
         text: { value: text, delimiter: '' },
         duration: text.length * speed,
         ease: 'none',
         delay,
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 92%',
-          once: true,
-        },
+        scrollTrigger: { trigger: el, start: 'top 92%', once: true },
       })
     }, el)
     return () => ctx.revert()
