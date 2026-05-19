@@ -78,17 +78,13 @@ export function MobileTabBar() {
         {open && (
           <motion.div
             key="panel"
-            className="fixed left-0 right-0 bottom-[3.75rem] z-50 md:hidden border-t border-outline-variant max-h-[calc(100dvh-3.75rem)] overflow-y-auto"
-            style={{ background: 'var(--bg)', backdropFilter: 'blur(32px)', WebkitBackdropFilter: 'blur(32px)' }}
+            className="fixed left-0 right-0 bottom-[3.75rem] z-50 md:hidden bg-bg/90 backdrop-blur-2xl border-t border-outline-variant max-h-[calc(100dvh-3.75rem)] overflow-y-auto"
             variants={panelVariants}
             initial="hidden"
             animate="visible"
             exit="exit"
           >
-            {/* Semi-transparent tint layer */}
-            <div className="absolute inset-0 bg-bg/85 pointer-events-none" />
-
-            <div className="relative px-5 pt-7 pb-7">
+            <div className="px-5 pt-7 pb-7">
               {/* Label */}
               <motion.p
                 variants={itemVariants}
@@ -146,14 +142,8 @@ export function MobileTabBar() {
       </AnimatePresence>
 
       {/* ── Bottom bar ────────────────────────────────────── */}
-      <div
-        className="fixed bottom-0 left-0 right-0 z-50 h-[3.75rem] border-t border-outline-variant md:hidden"
-        style={{ background: 'var(--bg)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)' }}
-      >
-        {/* Bottom bar tint */}
-        <div className="absolute inset-0 bg-bg/88 pointer-events-none" />
-
-        <div className="relative flex items-center justify-between px-5 h-full">
+      <div className="fixed bottom-0 left-0 right-0 z-50 h-[3.75rem] bg-bg/90 backdrop-blur-md border-t border-outline-variant md:hidden">
+        <div className="flex items-center justify-between px-5 h-full">
           {/* Brand */}
           <Link
             href="/"

@@ -39,7 +39,7 @@ function splitToChars(children: ReactNode): ReactNode[] {
           </span>
         ))
         out.push(
-          <span key={`w${k++}`} style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
+          <span key={`w${k++}`} style={{ display: 'inline-block', whiteSpace: 'nowrap', opacity: 0 }}>
             {chars}
           </span>
         )
@@ -67,7 +67,7 @@ function splitToWords(text: string): ReactNode[] {
       <span
         key={i}
         className="gsap-word"
-        style={{ display: 'inline-block', willChange: 'transform, opacity' }}
+        style={{ display: 'inline-block', willChange: 'transform, opacity', opacity: 0 }}
       >
         {word}
       </span>
@@ -184,7 +184,7 @@ export function GSAPTypewriter({
     const el = ref.current
     if (!el) return
     const ctx = gsap.context(() => {
-      gsap.set(el, { text: { value: '', delimiter: '' } })
+      gsap.set(el, { text: { value: '', delimiter: '' }, opacity: 1 })
       gsap.to(el, {
         text: { value: text, delimiter: '' },
         duration: text.length * speed,
@@ -201,7 +201,7 @@ export function GSAPTypewriter({
   }, [text, delay, speed])
 
   return (
-    <span ref={ref} className={className}>
+    <span ref={ref} className={className} style={{ opacity: 0 }}>
       {text}
     </span>
   )
