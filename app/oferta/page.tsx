@@ -181,7 +181,7 @@ export default function OfertaPage() {
             {process.map(({ step, title, desc }) => (
               <StaggerItem key={step}>
                 <div className="relative">
-                  <div className="w-12 h-12 border-2 border-iskra flex items-center justify-center mb-6 rounded-xl">
+                  <div className="w-12 h-12 border-2 border-iskra flex items-center justify-center mb-6 rounded-full">
                     <span className="mono text-mono-sm text-iskra font-medium">{step}</span>
                   </div>
                   {/* Connecting line */}

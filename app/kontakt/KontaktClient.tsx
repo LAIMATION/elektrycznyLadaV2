@@ -240,7 +240,7 @@ export function KontaktClient() {
                     href="https://www.instagram.com/elektryczny.lada/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2.5 px-4 py-2.5 border border-outline-variant rounded-lg hover-lift hover:border-iskra hover:text-iskra text-on-variant"
+                    className="flex items-center gap-2.5 px-4 py-2.5 border border-outline-variant rounded-full hover-lift hover:border-iskra hover:text-iskra text-on-variant"
                     aria-label="Instagram"
                   >
                     <Instagram size={15} />
@@ -250,7 +250,7 @@ export function KontaktClient() {
                     href="https://www.facebook.com/profile.php?id=61586262846558"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2.5 px-4 py-2.5 border border-outline-variant rounded-lg hover-lift hover:border-iskra hover:text-iskra text-on-variant"
+                    className="flex items-center gap-2.5 px-4 py-2.5 border border-outline-variant rounded-full hover-lift hover:border-iskra hover:text-iskra text-on-variant"
                     aria-label="Facebook"
                   >
                     <Facebook size={15} />

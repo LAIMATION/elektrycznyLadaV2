@@ -169,7 +169,7 @@ export function RealizacjeClient() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-bg/90 via-bg/30 to-transparent" />
               <div className="absolute top-6 right-6">
-                <span className="mono text-mono-xs bg-iskra text-on-iskra px-3 py-1.5">
+                <span className="mono text-mono-xs bg-iskra text-on-iskra px-3 py-1.5 rounded-full">
                   PROJEKT WYRÓŻNIONY
                 </span>
               </div>

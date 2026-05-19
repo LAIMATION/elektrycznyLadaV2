@@ -14,6 +14,35 @@ const NAV_LINKS = [
   { href: '/kontakt', label: 'Kontakt' },
 ]
 
+const panelVariants = {
+  hidden: { y: 28, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.38,
+      ease: [0.16, 1, 0.3, 1],
+      staggerChildren: 0.055,
+      delayChildren: 0.07,
+    },
+  },
+  exit: {
+    y: 28,
+    opacity: 0,
+    transition: { duration: 0.22, ease: [0.4, 0, 1, 1] },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 18, scale: 0.96 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] },
+  },
+}
+
 export function MobileTabBar() {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
@@ -21,7 +50,7 @@ export function MobileTabBar() {
   // Close on route change
   useEffect(() => { setOpen(false) }, [pathname])
 
-  // Lock body scroll when menu is open
+  // Lock body scroll
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
@@ -34,8 +63,7 @@ export function MobileTabBar() {
         {open && (
           <motion.div
             key="backdrop"
-            className="fixed inset-0 z-40 md:hidden"
-            style={{ background: 'rgba(0,0,0,0.45)', backdropFilter: 'blur(4px)' }}
+            className="fixed inset-0 z-40 md:hidden bg-bg/50"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -50,46 +78,47 @@ export function MobileTabBar() {
         {open && (
           <motion.div
             key="panel"
-            className="fixed left-0 right-0 bottom-[3.75rem] z-50 md:hidden overflow-hidden"
-            style={{ background: 'rgba(var(--bg-rgb, 255 255 255) / 0.97)', backdropFilter: 'blur(24px)' }}
-            initial={{ y: 40, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 40, opacity: 0 }}
-            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed left-0 right-0 bottom-[3.75rem] z-50 md:hidden border-t border-outline-variant max-h-[calc(100dvh-3.75rem)] overflow-y-auto"
+            style={{ background: 'var(--bg)', backdropFilter: 'blur(32px)', WebkitBackdropFilter: 'blur(32px)' }}
+            variants={panelVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
           >
-            {/* inner bg fallback for CSS var */}
-            <div className="bg-bg/97 backdrop-blur-2xl border-t border-outline-variant px-6 pt-8 pb-6">
+            {/* Semi-transparent tint layer */}
+            <div className="absolute inset-0 bg-bg/85 pointer-events-none" />
 
-              {/* label */}
-              <p className="mono text-[10px] uppercase tracking-widest text-on-variant mb-6">
+            <div className="relative px-5 pt-7 pb-7">
+              {/* Label */}
+              <motion.p
+                variants={itemVariants}
+                className="mono text-[10px] uppercase tracking-widest text-on-variant mb-5"
+              >
                 NAV_LINKS // 0{NAV_LINKS.length}
-              </p>
+              </motion.p>
 
-              {/* links */}
+              {/* Navigation pills */}
               <nav>
-                <ul className="flex flex-col">
-                  {NAV_LINKS.map(({ href, label }, i) => {
+                <ul className="flex flex-col gap-2.5">
+                  {NAV_LINKS.map(({ href, label }) => {
                     const active = pathname === href
                     return (
-                      <motion.li
-                        key={href}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: i * 0.055 + 0.05, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                      >
+                      <motion.li key={href} variants={itemVariants}>
                         <Link
                           href={href}
                           onClick={() => setOpen(false)}
-                          className={`flex items-center justify-between py-4 border-b border-outline-variant/40 group transition-colors duration-200 ${
-                            active ? 'text-iskra' : 'text-on-bg hover:text-iskra'
+                          className={`group flex items-center justify-between w-full px-5 py-3.5 rounded-full border transition-all duration-200 ${
+                            active
+                              ? 'border-iskra bg-iskra/10 text-iskra shadow-[0px_4px_14px_rgba(245,200,66,0.25)]'
+                              : 'border-outline-variant text-on-bg hover:border-iskra/50 hover:text-iskra'
                           }`}
                         >
-                          <span className="font-inter font-bold text-[22px] leading-tight tracking-tight">
+                          <span className="font-inter font-bold text-[18px] leading-tight tracking-tight">
                             {label}
                           </span>
                           <ArrowRight
-                            size={17}
-                            className={`transition-all duration-200 group-hover:translate-x-1 ${
+                            size={16}
+                            className={`transition-transform duration-200 group-hover:translate-x-1 ${
                               active ? 'text-iskra' : 'text-on-variant'
                             }`}
                           />
@@ -100,13 +129,8 @@ export function MobileTabBar() {
                 </ul>
               </nav>
 
-              {/* CTA */}
-              <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: NAV_LINKS.length * 0.055 + 0.1, duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="mt-7"
-              >
+              {/* CTA pill */}
+              <motion.div variants={itemVariants} className="mt-5">
                 <Link
                   href="/kontakt?wycena=1"
                   onClick={() => setOpen(false)}
@@ -122,9 +146,14 @@ export function MobileTabBar() {
       </AnimatePresence>
 
       {/* ── Bottom bar ────────────────────────────────────── */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 h-[3.75rem] bg-bg/90 backdrop-blur-md border-t border-outline-variant md:hidden">
-        <div className="flex items-center justify-between px-5 h-full">
+      <div
+        className="fixed bottom-0 left-0 right-0 z-50 h-[3.75rem] border-t border-outline-variant md:hidden"
+        style={{ background: 'var(--bg)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)' }}
+      >
+        {/* Bottom bar tint */}
+        <div className="absolute inset-0 bg-bg/88 pointer-events-none" />
 
+        <div className="relative flex items-center justify-between px-5 h-full">
           {/* Brand */}
           <Link
             href="/"
@@ -148,7 +177,7 @@ export function MobileTabBar() {
             className={`flex items-center gap-2 px-4 py-2 rounded-full border mono text-[11px] uppercase tracking-widest transition-all duration-250 ${
               open
                 ? 'border-iskra text-iskra bg-iskra/10 shadow-[0px_4px_18px_rgba(245,200,66,0.35)]'
-                : 'border-outline-variant text-on-variant bg-transparent hover:border-iskra/50 hover:text-on-bg'
+                : 'border-outline-variant text-on-variant hover:border-iskra/50 hover:text-on-bg'
             }`}
           >
             <AnimatePresence mode="wait" initial={false}>
