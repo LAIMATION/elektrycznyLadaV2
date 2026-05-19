@@ -114,8 +114,8 @@ export default function OfertaPage() {
       {/* ── Services ──────────────────────────────────────── */}
       <section className="pb-24 px-6 md:px-12 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {services.map(({ icon: Icon, title, tagline, desc, features, ref, img }, i) => (
-            <AnimateIn key={ref} delay={i * 0.08}>
+          {services.map(({ icon: Icon, title, tagline, desc, features, img }, i) => (
+            <AnimateIn key={title} delay={i * 0.08}>
               <article className="card-industrial overflow-hidden">
                 {/* Card image */}
                 <div className="relative h-52 overflow-hidden">
@@ -127,9 +127,6 @@ export default function OfertaPage() {
                     unoptimized
                   />
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent to-bg/80" />
-                  <div className="absolute top-4 right-4">
-                    <span className="mono text-mono-xs bg-bg/90 text-primary px-2.5 py-1">{ref}</span>
-                  </div>
                 </div>
 
                 <div className="p-8">

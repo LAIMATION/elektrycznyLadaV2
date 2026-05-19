@@ -74,8 +74,8 @@ body {
 
 /* ─── Section padding ────────────────────────────────── */
 .section-padding {
-  padding-top: 7rem;
-  padding-bottom: 7rem;
+  padding-top: clamp(3rem, 8vw, 7rem);
+  padding-bottom: clamp(3rem, 8vw, 7rem);
 }
 
 /* ─── Card base ──────────────────────────────────────── */

@@ -447,8 +447,8 @@ export function KontaktClient() {
       {/* ── Photo gallery ─────────────────────────────────── */}
       <section className="border-t border-outline-variant">
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-3" staggerDelay={0.08}>
-          {GALLERY_IMAGES.map(({ src, alt, ref }) => (
-            <StaggerItem key={ref}>
+          {GALLERY_IMAGES.map(({ src, alt, ref }, i) => (
+            <StaggerItem key={i}>
               <div className="relative h-64 md:h-80 overflow-hidden group">
                 <Image
                   src={src}
@@ -458,9 +458,6 @@ export function KontaktClient() {
                   unoptimized
                 />
                 <div className="absolute inset-0 bg-bg/30 group-hover:bg-transparent transition-colors duration-500" />
-                <div className="absolute bottom-4 right-4">
-                  <span className="mono text-mono-xs bg-bg/80 text-on-variant px-2 py-0.5">{ref}</span>
-                </div>
               </div>
             </StaggerItem>
           ))}

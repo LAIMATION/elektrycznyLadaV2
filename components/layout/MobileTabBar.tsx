@@ -155,7 +155,7 @@ export function MobileTabBar() {
           <Link
             href="/kontakt?wycena=1"
             onClick={() => setOpen(false)}
-            className="flex items-center gap-1.5 px-3.5 py-1.5 bg-iskra rounded-full text-on-iskra mono text-[11px] uppercase tracking-widest hover:opacity-90 transition-opacity"
+            className="flex items-center gap-1.5 px-4 py-2 bg-iskra rounded-full text-on-iskra mono text-[11px] uppercase tracking-widest hover:opacity-90 transition-opacity"
           >
             Wycena
           </Link>

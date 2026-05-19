@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "elektrycznyLada",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
+      "runtimeExecutable": "C:\\Program Files\\nodejs\\npm.cmd",
+      "runtimeArgs": ["run", "dev", "--prefix", "C:\\Users\\adria\\Desktop\\AI\\Websites\\elektrycznyLada"],
       "port": 3000
     }
   ]

@@ -133,7 +133,7 @@ export function RealizacjeClient() {
   return (
     <>
       {/* ── Hero ─────────────────────────────────────────── */}
-      <section className="pt-32 pb-16 px-6 md:px-12 max-w-7xl mx-auto">
+      <section className="pt-24 pb-6 md:pt-32 md:pb-12 px-6 md:px-12 max-w-7xl mx-auto">
         <GSAPChars
           as="h1"
           className="font-inter font-extrabold text-display-lg text-on-bg leading-none tracking-tight mb-6 max-w-3xl"
@@ -187,7 +187,7 @@ export function RealizacjeClient() {
 
       {/* ── Filter + Grid ─────────────────────────────────── */}
       <section className="pb-24 px-6 md:px-12 max-w-7xl mx-auto">
-        <AnimateIn className="mb-10 flex justify-end">
+        <AnimateIn className="mb-10">
           <FilterBar filters={FILTERS} onChange={setActiveFilter} />
         </AnimateIn>
 
@@ -218,11 +218,6 @@ export function RealizacjeClient() {
                     unoptimized
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-bg/80 to-transparent" />
-                  <div className="absolute top-3 right-3">
-                    <span className="mono text-mono-xs bg-bg/90 text-primary px-2 py-0.5 text-[10px]">
-                      REF: {project.id.toUpperCase()}
-                    </span>
-                  </div>
                 </div>
                 <div className="p-6">
                   <div className="flex flex-wrap gap-1.5 mb-4">
@@ -256,19 +251,19 @@ export function RealizacjeClient() {
       </section>
 
       {/* ── CTA ───────────────────────────────────────────── */}
-      <section className="bg-surface border-t border-outline-variant py-20 px-6 md:px-12">
+      <section className="bg-iskra py-20 px-6 md:px-12">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           <div>
             <GSAPWords
-              text="Gotowy na kolejny etap?"
+              text="Zrealizujemy Twój projekt."
               as="h2"
-              className="font-inter font-extrabold text-headline-lg text-on-bg tracking-tight leading-tight"
+              className="font-inter font-extrabold text-headline-lg text-on-iskra tracking-tight leading-tight"
             />
-            <p className="text-body-lg text-on-variant mt-3 max-w-lg">
-              Opisz swój projekt, a przygotujemy bezpłatną wycenę w ciągu 24 godzin.
+            <p className="text-body-lg text-on-iskra/80 mt-3 max-w-lg">
+              Opisz projekt, a przygotuję bezpłatną wycenę w ciągu 24 godzin.
             </p>
           </div>
-          <Link href="/kontakt?wycena=1" className="btn-primary flex-shrink-0">
+          <Link href="/kontakt?wycena=1" className="btn-cta flex-shrink-0">
             Darmowa wycena <ArrowRight size={15} />
           </Link>
         </div>

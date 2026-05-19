@@ -33,7 +33,7 @@ const ARTICLES: Article[] = [
   {
     id: 'art-001',
     category: 'smart-home',
-    title: '"Ważę zabezpieczyć nadmiarowo-prądowe każdego obwodu osobno" – jak to zrobić prawidłowo?',
+    title: '"Każdy obwód powinien mieć własne zabezpieczenie" – jak to dobrać prawidłowo?',
     excerpt:
       'Przeciążenie obwodu to jedna z częstszych przyczyn pożarów instalacji. Tłumaczymy, jak dobrać wyłączniki nadmiarowo-prądowe zgodnie z normą PN-HD 60364-4-41.',
     readTime: '8 min',
@@ -191,7 +191,7 @@ export function WiedzaClient() {
 
       {/* ── Filter + Articles grid ────────────────────────── */}
       <section className="pb-24 px-6 md:px-12 max-w-7xl mx-auto">
-        <AnimateIn className="mb-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+        <AnimateIn className="mb-10">
           <FilterBar filters={FILTERS} onChange={setActiveFilter} />
         </AnimateIn>
 
@@ -214,7 +214,7 @@ export function WiedzaClient() {
                   transition={{ duration: 0.65, delay: i * 0.07, ease: [0.16, 1, 0.3, 1] }}
                   className="card-industrial overflow-hidden group"
                 >
-                  <div className="relative h-44 overflow-hidden">
+                  <div className="relative h-36 md:h-44 overflow-hidden">
                     <Image
                       src={article.img}
                       alt={article.title}
