@@ -197,9 +197,6 @@ export default function OfertaPage() {
               unoptimized
             />
             <div className="absolute inset-0 bg-gradient-to-tr from-bg/60 to-transparent" />
-            <div className="absolute bottom-6 left-6 right-6">
-              <span className="mono text-mono-xs text-iskra">REF_NO: BLT-024</span>
-            </div>
           </RevealImage>
           <div>
             <GSAPChars

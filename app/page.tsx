@@ -81,8 +81,8 @@ export default function HomePage() {
   return (
     <>
       {/* ── Hero ─────────────────────────────────────────── */}
-      <section className="min-h-screen flex flex-col justify-start pt-20 md:justify-center md:pt-16 px-6 md:px-12 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center pt-8 pb-16 md:py-0">
+      <section className="md:min-h-screen flex flex-col justify-start pt-20 md:justify-center md:pt-16 px-6 md:px-12 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center pt-8 pb-10 md:py-0">
           <div className="md:col-span-7">
             <GSAPChars
               as="h1"
@@ -124,9 +124,6 @@ export default function HomePage() {
                   unoptimized
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-bg/60 to-transparent" />
-                <div className="absolute top-4 right-4 bg-iskra px-3 py-1 rounded">
-                  <span className="mono text-mono-xs text-on-iskra">REF_NO: 001-ALPHA</span>
-                </div>
               </div>
             </AnimateIn>
           </div>
@@ -178,7 +175,6 @@ export default function HomePage() {
                       <div className="flex-1">
                         <div className="flex items-center justify-between mb-3">
                           <h3 className="font-inter font-bold text-headline-md text-on-bg">{title}</h3>
-                          <span className="mono text-mono-xs text-on-variant hidden sm:block">{ref}</span>
                         </div>
                         <p className="text-body-md text-on-variant">{body}</p>
                       </div>
@@ -237,7 +233,7 @@ export default function HomePage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-bg/85 via-bg/20 to-transparent" />
               <div className="absolute bottom-6 left-6 right-6">
-                <span className="inline-flex items-center bg-bg/60 backdrop-blur-sm border border-outline-variant/30 text-on-bg mono text-[10px] uppercase tracking-widest px-2.5 py-1 rounded-full mb-3">
+                <span className="inline-flex items-center bg-iskra/85 backdrop-blur-sm text-on-iskra mono text-[10px] uppercase tracking-widest px-2.5 py-1 rounded-full mb-3">
                   {cat.replace(/_/g, ' ')}, {year}
                 </span>
                 <h4 className="font-inter font-bold text-headline-md text-on-bg">{title}</h4>

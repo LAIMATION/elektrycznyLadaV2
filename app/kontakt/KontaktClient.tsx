@@ -178,7 +178,7 @@ export function KontaktClient() {
                   </div>
                   <div>
                     <p className="mono text-mono-xs uppercase tracking-widest text-on-variant mb-1">
-                      ADRES_BIURA
+                      Adres biura
                     </p>
                     <p className="text-body-md text-on-bg">
                       ul. Elektryczna 12<br />15-688 Białystok
@@ -222,7 +222,7 @@ export function KontaktClient() {
               {/* Social */}
               <div>
                 <p className="mono text-mono-xs uppercase tracking-widest text-on-variant mb-4">
-                  SOCIAL_MEDIA
+                  Social media
                 </p>
                 <div className="flex items-center gap-3">
                   <a
@@ -273,7 +273,7 @@ export function KontaktClient() {
                   {/* ── Category toolbar ───────────────────── */}
                   <div className="mb-8">
                     <p className="mono text-mono-xs uppercase tracking-widest text-on-variant mb-3">
-                      KATEGORIA_ZAPYTANIA
+                      Kategoria zapytania
                     </p>
 
                     {/* Collapsed trigger pill */}

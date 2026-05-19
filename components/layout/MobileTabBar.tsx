@@ -151,14 +151,25 @@ export function MobileTabBar() {
             </span>
           </Link>
 
-          {/* CTA pill */}
-          <Link
-            href="/kontakt?wycena=1"
-            onClick={() => setOpen(false)}
-            className="flex items-center gap-1.5 px-4 py-2 bg-iskra rounded-full text-on-iskra mono text-[11px] uppercase tracking-widest hover:opacity-90 transition-opacity"
-          >
-            Wycena
-          </Link>
+          {/* CTA pill – hides smoothly when menu opens */}
+          <AnimatePresence initial={false}>
+            {!open && (
+              <motion.div
+                key="wycena"
+                initial={{ opacity: 0, scale: 0.85 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.85 }}
+                transition={{ duration: 0.22, ease: [0.4, 0, 0, 1] }}
+              >
+                <Link
+                  href="/kontakt?wycena=1"
+                  className="flex items-center gap-1.5 px-4 py-2 bg-iskra rounded-full text-on-iskra mono text-[11px] uppercase tracking-widest hover:opacity-90 transition-opacity"
+                >
+                  Wycena
+                </Link>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           {/* Menu toggle pill */}
           <button
