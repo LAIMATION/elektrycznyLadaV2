@@ -7,43 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { AnimateIn, StaggerContainer, StaggerItem } from '@/components/ui/AnimateIn'
 import { GSAPChars } from '@/components/ui/GSAPText'
 import { MapPin, Phone, Mail, Send, CheckCircle2, Instagram, Facebook, ChevronDown } from 'lucide-react'
-
-type CategoryKey = 'default' | 'new' | 'existing' | 'emergency' | 'quote' | 'other'
-
-const CATEGORIES: { key: CategoryKey; label: string; placeholder: string }[] = [
-  {
-    key: 'default',
-    label: 'Domyślna',
-    placeholder: 'Opisz swój projekt lub zadaj pytanie...',
-  },
-  {
-    key: 'new',
-    label: 'Nowa instalacja',
-    placeholder: 'Np. Planuję nową instalację elektryczną w domu 180 m² – budowa w stanie deweloperskim. Proszę o kontakt i wycenę...',
-  },
-  {
-    key: 'existing',
-    label: 'Istniejąca instalacja',
-    placeholder: 'Np. Mam instalację z lat 90. i chcę ją zmodernizować. Budynek mieszkalny, 3 pokoje, Białystok. Proszę o informację o zakresie prac...',
-  },
-  {
-    key: 'emergency',
-    label: 'Awaria',
-    placeholder: 'Np. Wybiły bezpieczniki i nie można ich włączyć z powrotem. Adres: ul. Lipowa 5, Białystok. Proszę o pilny kontakt...',
-  },
-  {
-    key: 'quote',
-    label: 'Wycena',
-    placeholder: 'Dzień dobry, proszę o przygotowanie darmowej wyceny dla mojego projektu...',
-  },
-  {
-    key: 'other',
-    label: 'Inne',
-    placeholder: 'Wpisz swoją wiadomość...',
-  },
-]
-
-const LIMITS = { name: 60, phone: 20, email: 100, message: 600 }
+import { CATEGORIES, LIMITS, GALLERY_IMAGES, type CategoryKey } from '@/data/kontakt'
 
 function CharCounter({ current, max }: { current: number; max: number }) {
   const near = current >= max * 0.8
@@ -57,24 +21,6 @@ function CharCounter({ current, max }: { current: number; max: number }) {
     </span>
   )
 }
-
-const GALLERY_IMAGES = [
-  {
-    src: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
-    alt: 'Rozdzielnia elektryczna – realizacja elektrycznyŁada',
-    ref: 'REF_IMG_01',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&q=80',
-    alt: 'Instalacja przemysłowa – Białystok',
-    ref: 'REF_IMG_02',
-  },
-  {
-    src: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80',
-    alt: 'Kable i połączenia – precyzja wykonania',
-    ref: 'REF_IMG_03',
-  },
-]
 
 export function KontaktClient() {
   const searchParams = useSearchParams()
@@ -191,7 +137,7 @@ export function KontaktClient() {
                   </div>
                   <div>
                     <p className="mono text-mono-xs uppercase tracking-widest text-on-variant mb-1">
-                      TELEFON
+                      Telefon
                     </p>
                     <a
                       href="tel:+48780800800"
@@ -207,7 +153,7 @@ export function KontaktClient() {
                   </div>
                   <div>
                     <p className="mono text-mono-xs uppercase tracking-widest text-on-variant mb-1">
-                      EMAIL
+                      Email
                     </p>
                     <a
                       href="mailto:elektryczny.lada@gmail.com"
@@ -276,7 +222,6 @@ export function KontaktClient() {
                       Kategoria zapytania
                     </p>
 
-                    {/* Collapsed trigger pill */}
                     <div className="flex items-center gap-3 flex-wrap">
                       <button
                         type="button"
@@ -293,7 +238,6 @@ export function KontaktClient() {
                         </motion.span>
                       </button>
 
-                      {/* Sliding category pills */}
                       <AnimatePresence>
                         {toolbarOpen && (
                           <motion.div
@@ -328,7 +272,6 @@ export function KontaktClient() {
 
                   {/* ── Fields ─────────────────────────────── */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-7 mb-8">
-                    {/* Name */}
                     <div>
                       <div className="flex items-center justify-between mb-2">
                         <label htmlFor="name" className="input-label">Imię i Nazwisko</label>
@@ -348,7 +291,6 @@ export function KontaktClient() {
                       />
                     </div>
 
-                    {/* Phone */}
                     <div>
                       <div className="flex items-center justify-between mb-2">
                         <label htmlFor="phone" className="input-label">Telefon</label>
@@ -367,7 +309,6 @@ export function KontaktClient() {
                       />
                     </div>
 
-                    {/* Email */}
                     <div className="md:col-span-2">
                       <div className="flex items-center justify-between mb-2">
                         <label htmlFor="email" className="input-label">Adres e-mail</label>
@@ -387,7 +328,6 @@ export function KontaktClient() {
                       />
                     </div>
 
-                    {/* Message */}
                     <div className="md:col-span-2">
                       <div className="flex items-center justify-between mb-2">
                         <label htmlFor="message" className="input-label">Wiadomość / Opis projektu</label>
@@ -447,7 +387,7 @@ export function KontaktClient() {
       {/* ── Photo gallery ─────────────────────────────────── */}
       <section className="border-t border-outline-variant">
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-3" staggerDelay={0.08}>
-          {GALLERY_IMAGES.map(({ src, alt, ref }, i) => (
+          {GALLERY_IMAGES.map(({ src, alt }, i) => (
             <StaggerItem key={i}>
               <div className="relative h-64 md:h-80 overflow-hidden group">
                 <Image

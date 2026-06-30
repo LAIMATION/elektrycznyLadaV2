@@ -5,72 +5,8 @@ import Link from 'next/link'
 import { SectionHeader } from '@/components/ui/SectionHeader'
 import { AnimateIn, StaggerContainer, StaggerItem } from '@/components/ui/AnimateIn'
 import { GSAPChars, GSAPWords } from '@/components/ui/GSAPText'
-import {
-  Zap, ShieldCheck, Ruler, ArrowRight, ChevronRight,
-  Cpu, Home, Wrench
-} from 'lucide-react'
-
-const philosophy = [
-  {
-    icon: Ruler,
-    title: 'Logika połączeń',
-    body: 'Czytelny schemat to fundament bezpieczeństwa. Projektujemy rozdzielnie tak, by ich serwisowanie było intuicyjne nawet po dekadach eksploatacji.',
-    ref: 'STD_01',
-  },
-  {
-    icon: ShieldCheck,
-    title: 'Bezpieczeństwo czynne',
-    body: 'Dobór zabezpieczeń, redundancja obwodów i właściwe przekroje przewodów to nie opcja – to standard, który chroni Twój dom i majątek.',
-    ref: 'STD_02',
-  },
-  {
-    icon: Zap,
-    title: 'Estetyka wykonania',
-    body: 'Przewody prowadzone w pionach i poziomach, równe odstępy, profesjonalne etykiety. To, co ukryte w ścianach, świadczy o jakości całej inwestycji.',
-    ref: 'STD_03',
-  },
-]
-
-const services = [
-  { icon: Zap, title: 'Elektryka', desc: 'Instalacje w budownictwie mieszkaniowym i komercyjnym' },
-  { icon: Cpu, title: 'Automatyka', desc: 'Systemy zarządzania budynkiem KNX, Grenton, Loxone' },
-  { icon: Home, title: 'Smart Home', desc: 'Inteligentne oświetlenie, ogrzewanie i bezpieczeństwo' },
-  { icon: Wrench, title: 'Serwis', desc: 'Diagnostyka i utrzymanie instalacji elektrycznych' },
-]
-
-const projects = [
-  {
-    cat: 'SMART_HOME',
-    year: '2024',
-    title: 'Willa Minimalistyczna – Białystok',
-    span: 'col-span-2 row-span-2',
-    img: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=900&q=80',
-    ref: 'REF_NO: BLT-024',
-  },
-  {
-    cat: 'AUTOMATYKA',
-    year: '2024',
-    title: 'Centrum Logistyczne Białystok',
-    span: 'col-span-2 row-span-1',
-    img: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=900&q=80',
-    ref: 'REF_NO: BLT-021',
-  },
-  {
-    cat: 'INSTALACJE',
-    year: '2023',
-    title: 'Apartamenty Śródmieście',
-    span: 'col-span-1 row-span-1',
-    img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
-    ref: 'REF_NO: BLT-019',
-  },
-]
-
-const stats = [
-  { value: '8+', label: 'lat doświadczenia' },
-  { value: '120+', label: 'ukończonych projektów' },
-  { value: '100%', label: 'zgodność z normami' },
-  { value: '24h', label: 'czas reakcji serwisowej' },
-]
+import { ArrowRight, ChevronRight } from 'lucide-react'
+import { philosophy, services, projects, stats } from '@/data/home'
 
 export function HomeClient() {
   return (
@@ -157,17 +93,15 @@ export function HomeClient() {
 
           <div className="md:col-span-7">
             <StaggerContainer className="flex flex-col gap-6" staggerDelay={0.12}>
-              {philosophy.map(({ icon: Icon, title, body, ref }) => (
-                <StaggerItem key={ref}>
+              {philosophy.map(({ icon: Icon, title, body }) => (
+                <StaggerItem key={title}>
                   <div className="card-industrial p-8 group">
                     <div className="flex items-start gap-6">
                       <div className="flex-shrink-0 w-12 h-12 bg-iskra/10 flex items-center justify-center rounded-xl group-hover:bg-iskra/20 transition-colors duration-300">
                         <Icon size={22} className="text-iskra" strokeWidth={1.75} />
                       </div>
                       <div className="flex-1">
-                        <div className="flex items-center justify-between mb-3">
-                          <h3 className="font-inter font-bold text-headline-md text-on-bg">{title}</h3>
-                        </div>
+                        <h3 className="font-inter font-bold text-headline-md text-on-bg mb-3">{title}</h3>
                         <p className="text-body-md text-on-variant">{body}</p>
                       </div>
                     </div>
@@ -209,9 +143,9 @@ export function HomeClient() {
 
         {/* Desktop bento */}
         <div className="hidden md:grid grid-cols-4 grid-rows-2 gap-4 h-[640px]">
-          {projects.map(({ cat, year, title, span, img, ref }) => (
+          {projects.map(({ cat, year, title, span, img, id }) => (
             <AnimateIn
-              key={ref}
+              key={id}
               className={`bento-item bg-surface-container ${span}`}
               delay={0.05}
             >
@@ -244,8 +178,8 @@ export function HomeClient() {
 
         {/* Mobile grid */}
         <StaggerContainer className="grid md:hidden grid-cols-1 gap-4" staggerDelay={0.1}>
-          {projects.map(({ cat, year, title, img, ref }) => (
-            <StaggerItem key={ref}>
+          {projects.map(({ cat, year, title, img, id }) => (
+            <StaggerItem key={id}>
               <div className="bento-item h-64 bg-surface-container relative">
                 <Image
                   src={img}
