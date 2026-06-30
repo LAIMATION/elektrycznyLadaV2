@@ -31,16 +31,3 @@ export function StatusIndicator() {
   )
 }
 
-export function StatusBadge() {
-  return (
-    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-iskra/30 bg-iskra/5">
-      <span className="relative flex h-2 w-2">
-        <span className="status-ring scale-75" />
-        <span className="relative inline-flex rounded-full h-2 w-2 bg-iskra animate-pulse_dot" />
-      </span>
-      <span className="mono text-mono-xs uppercase tracking-widest text-iskra">
-        OPERACJE_AKTYWNE
-      </span>
-    </div>
-  )
-}
