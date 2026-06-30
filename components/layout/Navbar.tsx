@@ -38,12 +38,14 @@ export function Navbar() {
         {/* Right actions */}
         <div className="flex items-center gap-3">
           <ThemeToggle />
-          <Link
-            href="/kontakt?wycena=1"
-            className="btn-primary hidden md:inline-flex !text-[12px] !px-5 !py-2.5 !min-h-0"
-          >
-            Darmowa Wycena
-          </Link>
+          <div className="hidden md:block">
+            <Link
+              href="/kontakt?wycena=1"
+              className="btn-primary !text-[12px] !px-5 !py-2.5 !min-h-0"
+            >
+              Darmowa Wycena
+            </Link>
+          </div>
         </div>
       </div>
     </header>
