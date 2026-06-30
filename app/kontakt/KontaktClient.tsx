@@ -8,6 +8,7 @@ import { AnimateIn, StaggerContainer, StaggerItem } from '@/components/ui/Animat
 import { GSAPChars } from '@/components/ui/GSAPText'
 import { MapPin, Phone, Mail, Send, CheckCircle2, Instagram, Facebook, ChevronDown } from 'lucide-react'
 import { CATEGORIES, LIMITS, GALLERY_IMAGES, type CategoryKey } from '@/data/kontakt'
+import { CONTACT } from '@/data/contact'
 
 function CharCounter({ current, max }: { current: number; max: number }) {
   const near = current >= max * 0.8
@@ -127,7 +128,7 @@ export function KontaktClient() {
                       Adres biura
                     </p>
                     <p className="text-body-md text-on-bg">
-                      ul. Elektryczna 12<br />15-688 Białystok
+                      {CONTACT.address.street}<br />{CONTACT.address.city}
                     </p>
                   </div>
                 </div>
@@ -140,10 +141,10 @@ export function KontaktClient() {
                       Telefon
                     </p>
                     <a
-                      href="tel:+48780800800"
+                      href={CONTACT.phone.href}
                       className="text-body-md text-on-bg hover:text-iskra transition-colors duration-180"
                     >
-                      +48 780 800 800
+                      {CONTACT.phone.display}
                     </a>
                   </div>
                 </div>
@@ -156,10 +157,10 @@ export function KontaktClient() {
                       Email
                     </p>
                     <a
-                      href="mailto:elektryczny.lada@gmail.com"
+                      href={CONTACT.email.href}
                       className="text-body-md text-on-bg hover:text-iskra transition-colors duration-180 break-all"
                     >
-                      elektryczny.lada@gmail.com
+                      {CONTACT.email.display}
                     </a>
                   </div>
                 </div>
@@ -172,7 +173,7 @@ export function KontaktClient() {
                 </p>
                 <div className="flex items-center gap-3">
                   <a
-                    href="https://www.instagram.com/elektryczny.lada/"
+                    href={CONTACT.social.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2.5 px-4 py-2.5 border border-outline-variant rounded-full hover-lift hover:border-iskra hover:text-iskra text-on-variant"
@@ -182,7 +183,7 @@ export function KontaktClient() {
                     <span className="mono text-mono-xs uppercase">Instagram</span>
                   </a>
                   <a
-                    href="https://www.facebook.com/profile.php?id=61586262846558"
+                    href={CONTACT.social.facebook}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2.5 px-4 py-2.5 border border-outline-variant rounded-full hover-lift hover:border-iskra hover:text-iskra text-on-variant"

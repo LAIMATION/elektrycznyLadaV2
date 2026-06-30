@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Zap, Instagram, Facebook, Mail, Phone, MapPin } from 'lucide-react'
 import { StatusIndicator } from '@/components/ui/StatusIndicator'
+import { CONTACT } from '@/data/contact'
 
 const navLinks = [
   { href: '/oferta', label: 'Oferta' },
@@ -38,7 +39,7 @@ export function Footer() {
             {/* Social */}
             <div className="flex items-center gap-4">
               <a
-                href="https://www.instagram.com/elektryczny.lada/"
+                href={CONTACT.social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram elektrycznyŁada"
@@ -47,7 +48,7 @@ export function Footer() {
                 <Instagram size={16} />
               </a>
               <a
-                href="https://www.facebook.com/profile.php?id=61586262846558"
+                href={CONTACT.social.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook elektrycznyŁada"
@@ -99,25 +100,25 @@ export function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin size={14} className="text-on-variant mt-0.5 flex-shrink-0" />
                 <span className="text-body-md text-on-variant">
-                  ul. Elektryczna 12<br />15-688 Białystok
+                  {CONTACT.address.street}<br />{CONTACT.address.city}
                 </span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={14} className="text-on-variant flex-shrink-0" />
                 <a
-                  href="tel:+48780800800"
+                  href={CONTACT.phone.href}
                   className="text-body-md text-on-variant hover:text-iskra transition-colors duration-180"
                 >
-                  +48 780 800 800
+                  {CONTACT.phone.display}
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={14} className="text-on-variant flex-shrink-0" />
                 <a
-                  href="mailto:elektryczny.lada@gmail.com"
+                  href={CONTACT.email.href}
                   className="text-body-md text-on-variant hover:text-iskra transition-colors duration-180 break-all"
                 >
-                  elektryczny.lada@gmail.com
+                  {CONTACT.email.display}
                 </a>
               </li>
             </ul>
