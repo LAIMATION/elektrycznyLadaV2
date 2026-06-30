@@ -3,7 +3,6 @@
 import { GSAPWords } from '@/components/ui/GSAPText'
 
 interface SectionHeaderProps {
-  label?: string
   title: string
   subtitle?: string
   className?: string
