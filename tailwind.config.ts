@@ -20,7 +20,6 @@ const config: Config = {
         'outline-variant': 'var(--outline-variant)',
         primary: 'var(--primary)',
         iskra: '#F5C842',
-        'iskra-dim': '#EEC13C',
         'iskra-hover': '#E8A020',
         'on-iskra': '#111111',
       },
@@ -54,19 +53,10 @@ const config: Config = {
           '0%': { opacity: '0', transform: 'translateY(32px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
-        shimmer: {
-          '0%': { backgroundPosition: '-200% center' },
-          '100%': { backgroundPosition: '200% center' },
-        },
-        counter_tick: {
-          '0%, 100%': { opacity: '1' },
-          '50%': { opacity: '0.6' },
-        },
       },
       animation: {
         pulse_dot: 'pulse_dot 2s ease-in-out infinite',
         reveal_up: 'reveal_up 0.6s cubic-bezier(0.4,0,0,1) forwards',
-        counter_tick: 'counter_tick 3s ease-in-out infinite',
       },
     },
   },

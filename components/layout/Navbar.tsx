@@ -4,14 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ThemeToggle } from '@/components/ui/ThemeToggle'
 import { Zap } from 'lucide-react'
-
-const links = [
-  { href: '/', label: 'Strona Główna' },
-  { href: '/oferta', label: 'Oferta' },
-  { href: '/realizacje', label: 'Realizacje' },
-  { href: '/wiedza', label: 'Wiedza' },
-  { href: '/kontakt', label: 'Kontakt' },
-]
+import { NAV_LINKS } from '@/data/nav'
 
 export function Navbar() {
   const pathname = usePathname()
@@ -31,7 +24,7 @@ export function Navbar() {
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-8">
-          {links.map(({ href, label }) => (
+          {NAV_LINKS.map(({ href, label }) => (
             <Link
               key={href}
               href={href}

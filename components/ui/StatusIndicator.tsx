@@ -25,7 +25,7 @@ export function StatusIndicator() {
         className={`mono text-mono-xs uppercase tracking-widest transition-opacity duration-300 ${tick ? 'opacity-80' : 'opacity-100'}`}
         style={{ color: 'var(--primary)' }}
       >
-        STABILNOŚĆ_SIECI:&nbsp;{uptime}%
+        STABILNOŚĆ SIECI:&nbsp;{uptime}%
       </span>
     </div>
   )

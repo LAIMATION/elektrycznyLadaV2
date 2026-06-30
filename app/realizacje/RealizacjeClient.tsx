@@ -8,7 +8,7 @@ import { AnimateIn, RevealImage } from '@/components/ui/AnimateIn'
 import { GSAPChars, GSAPWords } from '@/components/ui/GSAPText'
 import { FilterBar } from '@/components/ui/FilterBar'
 import { ArrowRight, ExternalLink } from 'lucide-react'
-import { FILTERS, PROJECTS } from '@/data/realizacje'
+import { REALIZACJE_FILTERS, PROJECTS } from '@/data/realizacje'
 
 export function RealizacjeClient() {
   const [activeFilter, setActiveFilter] = useState('wszystko')
@@ -72,7 +72,7 @@ export function RealizacjeClient() {
       {/* ── Filter + Grid ─────────────────────────────────── */}
       <section className="pb-24 px-6 md:px-12 max-w-7xl mx-auto">
         <AnimateIn className="mb-10">
-          <FilterBar filters={FILTERS} onChange={setActiveFilter} />
+          <FilterBar filters={REALIZACJE_FILTERS} onChange={setActiveFilter} />
         </AnimateIn>
 
         <AnimatePresence mode="wait">

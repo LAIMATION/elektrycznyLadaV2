@@ -98,46 +98,6 @@ body {
   box-shadow: 0px 16px 36px rgba(0, 0, 0, 0.45), 0px 4px 10px rgba(245, 200, 66, 0.08);
 }
 
-/* ─── Filter chip ────────────────────────────────────── */
-.filter-chip {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 0.5rem 1.25rem;
-  border: 1px solid var(--outline-variant);
-  background: transparent;
-  color: var(--on-variant);
-  cursor: pointer;
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.07);
-  transition: color 0.25s cubic-bezier(0.4,0,0,1), border-color 0.25s cubic-bezier(0.4,0,0,1), transform 0.25s cubic-bezier(0.4,0,0,1), box-shadow 0.25s ease 0s;
-}
-.filter-chip:hover {
-  border-color: #F5C842;
-  color: var(--on-bg);
-  transform: translateY(-2px);
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1), 0px 2px 4px rgba(245, 200, 66, 0.12);
-}
-.filter-chip:active {
-  transform: translateY(0px);
-}
-.filter-chip.active {
-  background-color: #F5C842;
-  border-color: #F5C842;
-  color: #111111;
-  transform: translateY(-2px);
-  box-shadow: 0px 6px 18px rgba(245, 200, 66, 0.5);
-}
-.dark .filter-chip {
-  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.28);
-}
-.dark .filter-chip:hover {
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.38), 0px 2px 4px rgba(245, 200, 66, 0.1);
-}
-.dark .filter-chip.active {
-  box-shadow: 0px 6px 18px rgba(245, 200, 66, 0.32);
-}
-
 /* ─── Primary button (pill) ──────────────────────────── */
 .btn-primary {
   display: inline-flex;
@@ -292,27 +252,6 @@ body {
   .btn-cta.w-full {
     justify-content: center;
   }
-}
-
-/* ─── Input underline style ──────────────────────────── */
-.input-underline {
-  background: transparent;
-  border: none;
-  border-bottom: 2px solid var(--outline-variant);
-  color: var(--on-bg);
-  font-family: 'Inter', sans-serif;
-  font-size: 16px;
-  padding: 0.75rem 0;
-  width: 100%;
-  outline: none;
-  transition: border-color 0.18s linear;
-}
-.input-underline:focus {
-  border-bottom-color: #F5C842;
-}
-.input-underline::placeholder {
-  color: var(--on-variant);
-  opacity: 0.6;
 }
 
 /* ─── Pill input ─────────────────────────────────────── */

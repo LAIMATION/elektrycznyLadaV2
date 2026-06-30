@@ -10,7 +10,7 @@ export interface Project {
   featured?: boolean
 }
 
-export const FILTERS = [
+export const REALIZACJE_FILTERS = [
   { key: 'wszystko',    label: 'Wszystko' },
   { key: 'smart-home',  label: 'Smart Home' },
   { key: 'instalacje',  label: 'Instalacje' },

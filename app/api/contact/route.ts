@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
+import { CONTACT } from '@/data/contact'
 
 export async function POST(req: NextRequest) {
   try {
-    const { name, phone, email, message } = await req.json()
+    const { name, phone, email, message, category } = await req.json()
 
     if (!name || !email || !message) {
       return NextResponse.json({ error: 'Brakuje wymaganych pól.' }, { status: 400 })
@@ -21,7 +22,7 @@ export async function POST(req: NextRequest) {
 
     await transporter.sendMail({
       from: `"Formularz elektrycznyŁada" <${process.env.SMTP_USER}>`,
-      to: process.env.CONTACT_EMAIL || 'elektryczny.lada@gmail.com',
+      to: process.env.CONTACT_EMAIL || CONTACT.email.display,
       replyTo: email,
       subject: `Nowe zapytanie od ${name} – elektrycznyŁada`,
       html: `
@@ -30,15 +31,12 @@ export async function POST(req: NextRequest) {
             <h1 style="font-size: 22px; font-weight: 800; color: #1a1c1c; margin: 0 0 4px 0;">
               Nowe zapytanie – elektrycznyŁada
             </h1>
-            <p style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #4e4634; letter-spacing: 0.06em; text-transform: uppercase; margin: 0;">
-              CONTACT_FORM // SYSTEM_READY
-            </p>
           </div>
 
           <table style="width: 100%; border-collapse: collapse;">
             <tr>
               <td style="font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: #7f7662; padding: 10px 0 4px; border-bottom: 1px solid #d1c5ae;">
-                IMIĘ_I_NAZWISKO
+                Imię i nazwisko
               </td>
               <td style="padding: 10px 0 4px; border-bottom: 1px solid #d1c5ae; color: #1a1c1c; font-size: 15px;">
                 ${name}
@@ -46,7 +44,7 @@ export async function POST(req: NextRequest) {
             </tr>
             <tr>
               <td style="font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: #7f7662; padding: 10px 0 4px; border-bottom: 1px solid #d1c5ae;">
-                EMAIL
+                Email
               </td>
               <td style="padding: 10px 0 4px; border-bottom: 1px solid #d1c5ae; color: #1a1c1c; font-size: 15px;">
                 <a href="mailto:${email}" style="color: #755b00;">${email}</a>
@@ -55,17 +53,26 @@ export async function POST(req: NextRequest) {
             ${phone ? `
             <tr>
               <td style="font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: #7f7662; padding: 10px 0 4px; border-bottom: 1px solid #d1c5ae;">
-                TELEFON
+                Telefon
               </td>
               <td style="padding: 10px 0 4px; border-bottom: 1px solid #d1c5ae; color: #1a1c1c; font-size: 15px;">
                 <a href="tel:${phone}" style="color: #755b00;">${phone}</a>
+              </td>
+            </tr>` : ''}
+            ${category ? `
+            <tr>
+              <td style="font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: #7f7662; padding: 10px 0 4px; border-bottom: 1px solid #d1c5ae;">
+                Kategoria
+              </td>
+              <td style="padding: 10px 0 4px; border-bottom: 1px solid #d1c5ae; color: #1a1c1c; font-size: 15px;">
+                ${category}
               </td>
             </tr>` : ''}
           </table>
 
           <div style="margin-top: 24px;">
             <p style="font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: #7f7662; margin-bottom: 12px;">
-              TREŚĆ_WIADOMOŚCI
+              Treść wiadomości
             </p>
             <div style="background: #ffffff; border-left: 3px solid #F5C842; padding: 16px 20px; color: #1a1c1c; font-size: 15px; line-height: 1.65; white-space: pre-wrap;">
               ${message.replace(/</g, '&lt;').replace(/>/g, '&gt;')}
@@ -74,7 +81,7 @@ export async function POST(req: NextRequest) {
 
           <div style="margin-top: 32px; padding-top: 16px; border-top: 1px solid #d1c5ae;">
             <p style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #7f7662; text-transform: uppercase; letter-spacing: 0.05em;">
-              elektrycznyŁada · ul. Elektryczna 12, 15-688 Białystok · elektryczny.lada@gmail.com
+              elektrycznyŁada · ${CONTACT.address.street}, ${CONTACT.address.city} · ${CONTACT.email.display}
             </p>
           </div>
         </div>

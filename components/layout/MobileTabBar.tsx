@@ -5,14 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, ArrowRight, Zap } from 'lucide-react'
-
-const NAV_LINKS = [
-  { href: '/', label: 'Strona Główna' },
-  { href: '/oferta', label: 'Oferta' },
-  { href: '/realizacje', label: 'Realizacje' },
-  { href: '/wiedza', label: 'Wiedza' },
-  { href: '/kontakt', label: 'Kontakt' },
-]
+import { NAV_LINKS } from '@/data/nav'
 
 const panelVariants = {
   hidden: { y: 28, opacity: 0 },

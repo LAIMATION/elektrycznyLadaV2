@@ -9,7 +9,7 @@ import { GSAPChars, GSAPWords } from '@/components/ui/GSAPText'
 import { FilterBar } from '@/components/ui/FilterBar'
 import { SectionHeader } from '@/components/ui/SectionHeader'
 import { ArrowRight, Clock } from 'lucide-react'
-import { FILTERS, ARTICLES, TOOLS } from '@/data/wiedza'
+import { WIEDZA_FILTERS, ARTICLES, TOOLS } from '@/data/wiedza'
 
 export function WiedzaClient() {
   const [activeFilter, setActiveFilter] = useState('wszystko')
@@ -85,7 +85,7 @@ export function WiedzaClient() {
       {/* ── Filter + Articles grid ────────────────────────── */}
       <section className="pb-24 px-6 md:px-12 max-w-7xl mx-auto">
         <AnimateIn className="mb-10">
-          <FilterBar filters={FILTERS} onChange={setActiveFilter} />
+          <FilterBar filters={WIEDZA_FILTERS} onChange={setActiveFilter} />
         </AnimateIn>
 
         <AnimatePresence mode="wait">
